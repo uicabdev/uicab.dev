@@ -1,4 +1,4 @@
-# Plan Maestro — uicabdev.dev
+# Plan Maestro — uicab.dev
 ### Portafolio y marca personal de Manuel Uicab
 
 ---
@@ -22,8 +22,8 @@
 | Elemento | Valor |
 |---|---|
 | Alias | uicabdev |
-| Dominio principal | uicabdev.dev |
-| Email | hola@uicabdev.dev |
+| Dominio principal | uicab.dev |
+| Email | hola@uicab.dev |
 | GitHub | @uicabdev |
 | LinkedIn | /in/uicabdev |
 | X / Twitter | @uicabdev |
@@ -152,12 +152,12 @@ Incluye período de prácticas profesionales en modalidad de staffing externo �
 ### Estructura de URLs
 
 ```
-uicabdev.dev              → redirige a /es/
-uicabdev.dev/es/          → portafolio en español
-uicabdev.dev/en/          → portafolio en inglés
-uicabdev.dev/es/blog/     → blog en español
-uicabdev.dev/en/blog/     → blog en inglés
-uicabdev.dev/es/blog/[slug]  → artículo individual
+uicab.dev              → redirige a /es/
+uicab.dev/es/          → portafolio en español
+uicab.dev/en/          → portafolio en inglés
+uicab.dev/es/blog/     → blog en español
+uicab.dev/en/blog/     → blog en inglés
+uicab.dev/es/blog/[slug]  → artículo individual
 ```
 
 ---
@@ -167,7 +167,7 @@ uicabdev.dev/es/blog/[slug]  → artículo individual
 ### Hero
 
 **Estructura visual:**
-- Navbar: logo `uicabdev.dev` | links de navegación | switch ES/EN | botón CV
+- Navbar: logo `uicab.dev` | links de navegación | switch ES/EN | botón CV
 - Layout dos columnas: texto a la izquierda, foto a la derecha
 - Indicador de disponibilidad activo
 - Propuesta de valor con línea de acento verde
@@ -286,7 +286,7 @@ Estoy abierto a nuevas oportunidades — ya sea un proyecto freelance, una posic
 **Descripción EN:**
 I'm open to new opportunities — whether it's a freelance project, a position on a team, or a conversation about architecture and consulting. If you have something in mind, write to me.
 
-**Email:** hola@uicabdev.dev
+**Email:** hola@uicab.dev
 
 **Disponibilidad:**
 - Empleo full-time
@@ -364,9 +364,9 @@ Estructura del proyecto en Astro, i18n, componentes base, orden de desarrollo y 
 
 | Prioridad | Acción |
 |---|---|
-| 1 | Registrar uicabdev.dev en Namecheap o Porkbun |
+| 1 | Registrar uicab.dev en Namecheap o Porkbun |
 | 2 | Reclamar @uicabdev en todas las plataformas |
-| 3 | Configurar hola@uicabdev.dev |
+| 3 | Configurar hola@uicab.dev |
 | 4 | Construir MVP en Astro con las 6 secciones |
 | 5 | Deploy en Vercel o Netlify |
 | 6 | Configurar Umami |
@@ -387,5 +387,5 @@ Estructura del proyecto en Astro, i18n, componentes base, orden de desarrollo y 
 ---
 
 *Documento generado como plan de referencia completo*
-*uicabdev.dev — Manuel Uicab*
+*uicab.dev — Manuel Uicab*
 *Versión 1.0*
