@@ -1,0 +1,110 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import { HERO_IMAGE } from '../../consts';
+import SocialLinks from '../../components/common/SocialLinks.astro';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+
+const quote = {
+  es: '"El código es la última parte. No empiezo a escribir hasta entender qué problema estoy resolviendo — eso es lo que me permite construir productos de principio a fin."',
+  en: '"Code is the last step. I don\'t start writing until I understand what problem I\'m solving — that\'s what allows me to build products from idea to launch."',
+};
+---
+
+<section id="hero" class="flex min-h-[calc(100vh-4.5rem)] items-center">
+  <div class="mx-auto w-full max-w-5xl px-6 py-20">
+    <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+
+      <!-- Texto -->
+      <div class="flex flex-col gap-7">
+
+        <!-- Badge disponibilidad -->
+        <div class="flex w-fit items-center gap-2.5">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+          </span>
+          <span class="text-sm text-text-secondary">{t('hero.availability')}</span>
+        </div>
+
+        <!-- Nombre + rol -->
+        <div class="flex flex-col gap-1">
+          <h1 class="font-heading text-4xl font-bold leading-tight text-text-primary md:text-5xl">
+            Manuel Uicab
+          </h1>
+          <p class="font-heading text-xl font-medium text-text-secondary">
+            Frontend Developer
+          </p>
+        </div>
+
+        <!-- Propuesta de valor -->
+        <blockquote class="border-l-2 border-accent pl-5 text-text-secondary leading-relaxed">
+          {quote[lang]}
+        </blockquote>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3">
+          <a
+            href={`/${lang}/#projects`}
+            class="bg-accent px-5 py-2.5 text-sm font-medium text-bg-base transition-colors hover:bg-accent-hover"
+          >
+            {t('hero.cta.primary')}
+          </a>
+          <a
+            href={`/${lang}/#contact`}
+            class="border border-border px-5 py-2.5 text-sm font-medium text-text-primary transition-colors hover:border-accent hover:text-accent"
+          >
+            {t('hero.cta.secondary')}
+          </a>
+        </div>
+
+        <!-- Social links -->
+        <SocialLinks />
+      </div>
+
+      <!-- Foto -->
+      <div class="flex justify-center md:justify-end">
+        <div class="h-56 w-56 overflow-hidden bg-surface md:h-72 md:w-72">
+          <img
+            src={HERO_IMAGE}
+            alt="Manuel Uicab"
+            width="288"
+            height="288"
+            class="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="mt-20 flex justify-center">
+      <a
+        href={`/${lang}/#about`}
+        aria-label={t('hero.scroll')}
+        class="text-text-secondary transition-colors hover:text-accent"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <polyline points="19 12 12 19 5 12" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

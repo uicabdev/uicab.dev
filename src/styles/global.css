@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-base: #1E1E1E;
+  --color-surface: #2A2A2A;
+  --color-border: #333333;
+  --color-accent: #3DD9A8;
+  --color-accent-hover: #2aaa84;
+  --color-text-primary: #F0EDE8;
+  --color-text-secondary: #8a8f8e;
+
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));

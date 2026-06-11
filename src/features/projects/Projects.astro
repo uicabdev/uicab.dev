@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../i18n/utils';
+import ProjectCard from './ProjectCard.astro';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+
+const collectionName = lang === 'es' ? 'projects-es' : 'projects-en';
+const projects = (await getCollection(collectionName)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<section id="projects" class="mx-auto max-w-5xl px-6 py-24">
+  <div class="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
+
+    <!-- Título de sección (sticky en desktop) -->
+    <div>
+      <h2 class="font-heading text-3xl font-bold text-text-primary md:sticky md:top-24">
+        {t('nav.projects')}
+      </h2>
+    </div>
+
+    <!-- Cards -->
+    <div class="flex flex-col gap-6">
+      {projects.map(project => <ProjectCard project={project} lang={lang} />)}
+    </div>
+
+  </div>
+</section>

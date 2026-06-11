@@ -1,0 +1,51 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import { EMAIL } from '../../consts';
+import SocialLinks from '../../components/common/SocialLinks.astro';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+
+const availability = [
+  t('contact.availability.fulltime'),
+  t('contact.availability.freelance'),
+  t('contact.availability.consulting'),
+];
+---
+
+<section id="contact" class="mx-auto max-w-5xl px-6 py-24">
+  <div class="flex max-w-2xl flex-col gap-8">
+
+    <h2 class="font-heading text-3xl font-bold text-text-primary">
+      {t('contact.title')}
+    </h2>
+
+    <p class="leading-relaxed text-text-secondary">
+      {t('contact.description')}
+    </p>
+
+    <a
+      href={`mailto:${EMAIL}`}
+      class="self-start font-heading text-lg font-medium text-accent transition-colors hover:text-accent-hover"
+    >
+      {EMAIL}
+    </a>
+
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-wrap gap-2">
+        {availability.map(item => (
+          <span class="border border-border px-2.5 py-1 text-sm text-text-secondary">
+            {item}
+          </span>
+        ))}
+      </div>
+      <SocialLinks />
+    </div>
+
+  </div>
+</section>
