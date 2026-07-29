@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "createdAt": "2026-07-28T19:08:24.051Z",
+        "reason": "User confirmed Space Grotesk is a pinned brand decision in CLAUDE.md, not a generic default"
+      }
+    ]
+  }
+}

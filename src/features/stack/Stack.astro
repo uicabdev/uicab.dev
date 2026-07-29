@@ -68,8 +68,12 @@ const groups: Record<'es' | 'en', StackGroup[]> = {
 
       <!-- Grid de grupos 2×2 -->
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
-        {groups[lang].map(group => (
-          <div class="flex flex-col gap-3">
+        {groups[lang].map((group, i) => (
+          <div
+            data-reveal="up"
+            style={`--reveal-delay: ${i * 90}ms`}
+            class="flex flex-col gap-3"
+          >
             <h3 class="text-xs font-medium uppercase tracking-wide text-accent">
               {group.label}
             </h3>

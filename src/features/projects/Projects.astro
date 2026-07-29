@@ -29,7 +29,7 @@ const projects = (await getCollection(collectionName)).sort(
 
     <!-- Cards -->
     <div class="flex flex-col gap-6">
-      {projects.map(project => <ProjectCard project={project} lang={lang} />)}
+      {projects.map((project, i) => <ProjectCard project={project} lang={lang} index={i} />)}
     </div>
 
   </div>

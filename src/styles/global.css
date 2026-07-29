@@ -7,11 +7,89 @@
   --color-accent: #3DD9A8;
   --color-accent-hover: #2aaa84;
   --color-text-primary: #F0EDE8;
-  --color-text-secondary: #8a8f8e;
+  --color-text-secondary: #949998;
 
   --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'DM Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+:root {
+  --color-bg-base: #F0EDE8;
+  --color-surface: #E8E4DC;
+  --color-border: #D9D4C9;
+  --color-accent: #17694F;
+  --color-accent-hover: #12523E;
+  --color-text-primary: #1E1E1E;
+  --color-text-secondary: #635F57;
+}
+
+.dark {
+  --color-bg-base: #1E1E1E;
+  --color-surface: #2A2A2A;
+  --color-border: #333333;
+  --color-accent: #3DD9A8;
+  --color-accent-hover: #2aaa84;
+  --color-text-primary: #F0EDE8;
+  --color-text-secondary: #949998;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme toggle: cross-fade colors instead of an instant hard cut. Scoped to
+   elements without their own explicit transition (Tailwind's transition-*
+   utilities have higher specificity and keep their own tuned timing). */
+@media (prefers-reduced-motion: no-preference) {
+  *,
+  *::before,
+  *::after {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+      fill 0.25s ease, stroke 0.25s ease;
+  }
+}
+
+/* Smooth anchor-link scrolling (nav, hero scroll hint, in-page CTAs). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Motion: reveal-on-scroll. Hidden state only applies once JS has proven it can
+   reveal the element again (html.js) and the visitor hasn't asked for less motion.
+   No-JS and prefers-reduced-motion both leave content visible from the start. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  html.js [data-reveal='up'] {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  html.js [data-reveal='fade'] {
+    opacity: 0;
+  }
+
+  html.js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @keyframes scroll-hint-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(6px);
+    }
+  }
+
+  .scroll-hint {
+    animation: scroll-hint-float 1.8s ease-in-out infinite;
+  }
+}

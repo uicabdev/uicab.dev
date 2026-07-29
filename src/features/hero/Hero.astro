@@ -1,6 +1,6 @@
 ---
 import { useTranslations } from '../../i18n/utils';
-import { HERO_IMAGE } from '../../consts';
+import { HERO_IMAGE_WEBP, HERO_IMAGE_PNG } from '../../consts';
 import SocialLinks from '../../components/common/SocialLinks.astro';
 import type { Lang } from '../../i18n/ui';
 
@@ -25,7 +25,11 @@ const quote = {
       <div class="flex flex-col gap-7">
 
         <!-- Badge disponibilidad -->
-        <div class="flex w-fit items-center gap-2.5">
+        <div
+          data-reveal="fade"
+          style="--reveal-delay: 0ms"
+          class="flex w-fit items-center gap-2.5"
+        >
           <span class="relative flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
@@ -34,7 +38,7 @@ const quote = {
         </div>
 
         <!-- Nombre + rol -->
-        <div class="flex flex-col gap-1">
+        <div data-reveal="up" style="--reveal-delay: 80ms" class="flex flex-col gap-1">
           <h1 class="font-heading text-4xl font-bold leading-tight text-text-primary md:text-5xl">
             Manuel Uicab
           </h1>
@@ -44,40 +48,53 @@ const quote = {
         </div>
 
         <!-- Propuesta de valor -->
-        <blockquote class="border-l-2 border-accent pl-5 font-heading text-lg leading-relaxed text-text-secondary">
+        <blockquote
+          data-reveal="up"
+          style="--reveal-delay: 160ms"
+          class="border-l-2 border-accent pl-5 font-heading text-lg leading-relaxed text-text-secondary"
+        >
           {quote[lang]}
         </blockquote>
 
         <!-- CTAs -->
-        <div class="flex flex-wrap gap-3">
+        <div data-reveal="up" style="--reveal-delay: 240ms" class="flex flex-wrap gap-3">
           <a
             href={`/${lang}/#projects`}
-            class="inline-flex items-center bg-accent px-5 py-2.5 text-sm font-medium text-bg-base transition-colors hover:bg-accent-hover"
+            class="inline-flex items-center bg-accent px-5 py-2.5 text-sm font-medium text-bg-base transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-accent-hover"
           >
             {t('hero.cta.primary')}
           </a>
           <a
             href={`/${lang}/#contact`}
-            class="inline-flex items-center border border-border px-5 py-2.5 text-sm font-medium text-text-primary transition-colors hover:border-accent hover:text-accent"
+            class="inline-flex items-center border border-border px-5 py-2.5 text-sm font-medium text-text-primary transition-[color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
           >
             {t('hero.cta.secondary')}
           </a>
         </div>
 
         <!-- Social links -->
-        <SocialLinks />
+        <div data-reveal="fade" style="--reveal-delay: 320ms">
+          <SocialLinks />
+        </div>
       </div>
 
       <!-- Foto -->
       <div class="flex justify-center md:justify-end">
-        <div class="h-56 w-56 overflow-hidden bg-surface md:h-72 md:w-72">
-          <img
-            src={HERO_IMAGE}
-            alt="Manuel Uicab"
-            width="288"
-            height="288"
-            class="h-full w-full object-cover"
-          />
+        <div
+          data-reveal="fade"
+          style="--reveal-delay: 120ms"
+          class="h-56 w-56 overflow-hidden md:h-72 md:w-72 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]"
+        >
+          <picture>
+            <source srcset={HERO_IMAGE_WEBP} type="image/webp" />
+            <img
+              src={HERO_IMAGE_PNG}
+              alt="Manuel Uicab"
+              width="288"
+              height="288"
+              class="h-full w-full object-cover object-top"
+            />
+          </picture>
         </div>
       </div>
 
@@ -88,7 +105,7 @@ const quote = {
       <a
         href={`/${lang}/#about`}
         aria-label={t('hero.scroll')}
-        class="text-text-secondary transition-colors hover:text-accent"
+        class="scroll-hint text-text-secondary transition-colors hover:text-accent"
       >
         <svg
           width="20"

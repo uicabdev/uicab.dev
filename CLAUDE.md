@@ -19,16 +19,23 @@ antes de improvisar una alternativa.
 ### Package manager
 `pnpm`. No alternes con npm/yarn en los comandos.
 
-### Paleta — tokens exactos (definir en `styles/global.css` con `@theme`)
-| Rol | Hex |
-|---|---|
-| Fondo base | `#1E1E1E` |
-| Superficie (cards, navbar) | `#2A2A2A` |
-| Borde / separadores | `#333333` |
-| Acento principal | `#3DD9A8` |
-| Acento hover | `#2aaa84` |
-| Texto primario | `#F0EDE8` |
-| Texto secundario | `#8a8f8e` |
+### Paleta — tokens exactos (definir en `styles/global.css`, `:root` + `.dark`)
+Dark es la base/identidad del proyecto. Light existe como tema real (toggle
+funcional) — mismos 7 roles, valores propios por tema, verificados WCAG AA.
+
+| Rol | Dark (base) | Light |
+|---|---|---|
+| Fondo base | `#1E1E1E` | `#F0EDE8` |
+| Superficie (cards, navbar) | `#2A2A2A` | `#E8E4DC` |
+| Borde / separadores | `#333333` | `#D9D4C9` |
+| Acento principal | `#3DD9A8` | `#17694F` |
+| Acento hover | `#2aaa84` | `#12523E` |
+| Texto primario | `#F0EDE8` | `#1E1E1E` |
+| Texto secundario | `#949998` | `#635F57` |
+
+El acento se oscurece en light mode (mismo hue) porque el verde-menta original
+cae a 1.54:1 de contraste como texto sobre fondo claro — el ajuste es necesario
+para accesibilidad, no un color nuevo fuera de la paleta.
 
 No introduzcas colores fuera de esta tabla. El acento es uno solo, usado con criterio.
 

@@ -6,14 +6,19 @@ import type { Lang } from '../../i18n/ui';
 interface Props {
   project: CollectionEntry<'projects-es'> | CollectionEntry<'projects-en'>;
   lang: Lang;
+  index?: number;
 }
 
-const { project, lang } = Astro.props;
+const { project, lang, index = 0 } = Astro.props;
 const t = useTranslations(lang);
 const { Content } = await render(project);
 ---
 
-<article class="border border-border bg-surface">
+<article
+  data-reveal="up"
+  style={`--reveal-delay: ${index * 90}ms`}
+  class="border border-border bg-surface"
+>
 
   <!-- Cabecera siempre visible -->
   <div class="p-6 md:p-8">
