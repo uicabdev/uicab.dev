@@ -15,7 +15,7 @@ Tras un proceso de diagnóstico con el área de diseño — que incluyó sesione
 
 En el lado técnico experimenté con múltiples enfoques antes de tomar una decisión. Evalué arquitecturas desde las más simples hasta Atomic Design y Clean Architecture. El resultado fue una arquitectura propia — una mezcla de Screaming Architecture y Vertical Slices — centrada en features como unidad principal de organización. Cada feature es autónoma, coherente y fácil de localizar. Los principios SOLID, DRY y YAGNI guían cada decisión de implementación.
 
-Esta misma arquitectura la publiqué como plantilla base para proyectos React — es la estructura que uso como punto de partida en cualquier proyecto nuevo.
+Esta misma arquitectura se convirtió en el estándar interno de la empresa para proyectos React — la diseño y mantengo, y hoy la adopta todo el equipo frontend.
 
 ### Estado actual
 

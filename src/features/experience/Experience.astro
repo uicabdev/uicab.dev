@@ -10,22 +10,22 @@ const { lang = 'es' } = Astro.props;
 const t = useTranslations(lang);
 
 const company = 'Innovaforce';
-const role = 'Frontend Lead / Mid Developer';
+const role = 'Frontend Technical Reference';
 
 const localized: Record<'es' | 'en', { period: string; paragraphs: string[]; footnote: string }> = {
   es: {
-    period: 'Septiembre 2018 · Presente',
+    period: 'Octubre 2018 · Presente',
     paragraphs: [
-      'Entré a Innovaforce antes de terminar la carrera, como junior. Seis años después soy el responsable del área frontend — no por título, sino por lo que el trabajo fue pidiendo con el tiempo.',
+      'Entré a Innovaforce antes de terminar la carrera, como junior. Con el tiempo me convertí en la referencia técnica del equipo frontend — no por título, sino por lo que el trabajo fue pidiendo.',
       'En ese camino construí sistemas que hoy están en producción: una plataforma de gestión de créditos automotrices con múltiples actores y firma digital, un sistema de subastas multi-audiencia, y actualmente lidero el rediseño completo de un gestor de tareas interno. Cada proyecto me ha obligado a tomar decisiones que van más allá del código — arquitectura, estándares, criterio técnico.',
       'También acompaño al equipo: cuando hay un problema complejo, soy el primero en sentarme a resolverlo con ellos.',
     ],
     footnote: 'Incluye período de prácticas profesionales en modalidad de staffing externo — 2018.',
   },
   en: {
-    period: 'September 2018 · Present',
+    period: 'October 2018 · Present',
     paragraphs: [
-      "I joined Innovaforce before finishing my degree, as a junior. Six years later I lead the frontend area — not because of a title, but because the work gradually asked for it.",
+      "I joined Innovaforce before finishing my degree, as a junior. Over time I became the technical reference for the frontend team — not because of a title, but because the work gradually asked for it.",
       "Along the way I've built systems that are live in production: an automotive credit management platform with multiple actors and digital signing, a multi-audience asset auction system, and I'm currently leading a full rebuild of an internal task manager. Each project pushed me to make decisions beyond the code — architecture, standards, technical judgment.",
       "I also support the team: when a complex problem shows up, I'm the first one sitting down to work through it with them.",
     ],

@@ -15,7 +15,7 @@ After a diagnostic process with the design team — which included feedback sess
 
 On the technical side I experimented with multiple approaches before making a decision. I evaluated architectures from the simplest to Atomic Design and Clean Architecture. The result was a custom architecture — a blend of Screaming Architecture and Vertical Slices — centered on features as the main unit of organization. Each feature is autonomous, coherent and easy to locate. SOLID, DRY and YAGNI principles guide every implementation decision.
 
-I published this same architecture as a base template for React projects — it's the structure I use as a starting point for any new project.
+This same architecture became the company's internal standard for React projects — I designed and maintain it, and today it's adopted by the entire frontend team.
 
 ### Current state
 
