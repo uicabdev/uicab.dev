@@ -9,3 +9,5 @@ node_modules/
 .DS_Store
 .astro/
 .impeccable/hook.cache.json
+# Snapshots de crítica (archivo local); ignore.md sí se versiona si existe
+.impeccable/critique/*__*.md
