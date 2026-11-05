@@ -32,7 +32,8 @@ const navLinks = [
       {navLinks.map(link => (
         <a
           href={link.href}
-          class="text-text-muted hover:text-primary-dark transition-colors text-sm"
+          class="text-text-muted hover:text-primary-dark aria-[current=true]:text-primary-dark aria-[current=true]:underline aria-[current=true]:underline-offset-8 transition-colors text-sm"
+          data-nav-link
         >
           {link.label}
         </a>
@@ -128,7 +129,8 @@ const navLinks = [
       {navLinks.map(link => (
         <a
           href={link.href}
-          class="text-text-muted hover:text-primary-dark transition-colors text-sm"
+          class="text-text-muted hover:text-primary-dark aria-[current=true]:text-primary-dark aria-[current=true]:underline aria-[current=true]:underline-offset-8 transition-colors text-sm"
+          data-nav-link
           data-mobile-nav-link
         >
           {link.label}
@@ -194,4 +196,26 @@ const navLinks = [
   document.querySelectorAll('[data-mobile-nav-link]').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
+
+  // Sección activa: marca con aria-current el enlace de la sección visible (solo en la home).
+  const navLinkEls = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+  const sections = document.querySelectorAll<HTMLElement>('main > section[id]');
+  if (navLinkEls.length && sections.length && 'IntersectionObserver' in window) {
+    const hashOf = (a: HTMLAnchorElement) => new URL(a.href).hash.slice(1);
+    const setCurrent = (id: string) => {
+      navLinkEls.forEach(a => {
+        if (hashOf(a) === id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    };
+    const io = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) setCurrent((e.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+    sections.forEach(s => io.observe(s));
+  }
 </script>
