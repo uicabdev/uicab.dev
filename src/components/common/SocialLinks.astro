@@ -1,5 +1,15 @@
 ---
 import { SOCIAL, CV_PATH } from '../../consts';
+
+interface Props {
+  tone?: 'default' | 'inverse';
+}
+
+const { tone = 'default' } = Astro.props;
+const linkClass =
+  tone === 'inverse'
+    ? 'text-surface hover:text-white transition-colors text-sm'
+    : 'text-text-muted hover:text-primary-dark transition-colors text-sm';
 ---
 
 <div class="flex items-center gap-4">
@@ -7,7 +17,7 @@ import { SOCIAL, CV_PATH } from '../../consts';
     href={SOCIAL.github}
     target="_blank"
     rel="noopener noreferrer"
-    class="text-text-muted hover:text-primary-dark transition-colors text-sm"
+    class={linkClass}
     aria-label="GitHub"
   >
     GitHub
@@ -16,7 +26,7 @@ import { SOCIAL, CV_PATH } from '../../consts';
     href={SOCIAL.linkedin}
     target="_blank"
     rel="noopener noreferrer"
-    class="text-text-muted hover:text-primary-dark transition-colors text-sm"
+    class={linkClass}
     aria-label="LinkedIn"
   >
     LinkedIn
@@ -25,7 +35,7 @@ import { SOCIAL, CV_PATH } from '../../consts';
     href={CV_PATH}
     target="_blank"
     rel="noopener noreferrer"
-    class="text-text-muted hover:text-primary-dark transition-colors text-sm"
+    class={linkClass}
     aria-label="Descargar CV"
   >
     CV ↓

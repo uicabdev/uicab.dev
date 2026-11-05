@@ -18,34 +18,30 @@ const availability = [
 ];
 ---
 
-<section id="contact" class="mx-auto max-w-5xl border-t border-surface-muted px-6 py-24">
-  <div data-reveal="fade" class="flex max-w-2xl flex-col gap-8">
+<section id="contact" class="bg-primary-dark">
+  <div class="mx-auto max-w-5xl px-6 pb-6 pt-28">
+    <div data-reveal="fade" class="flex max-w-3xl flex-col gap-10">
 
-    <h2 class="font-heading text-4xl font-bold text-primary-dark">
-      {t('contact.title')}
-    </h2>
+      <h2 class="font-heading text-4xl font-bold text-white md:text-5xl">
+        {t('contact.title')}
+      </h2>
 
-    <p class="leading-relaxed text-text-muted">
-      {t('contact.description')}
-    </p>
+      <p class="max-w-2xl text-lg leading-relaxed text-surface">
+        {t('contact.description')}
+      </p>
 
-    <a
-      href={`mailto:${EMAIL}`}
-      class="self-start font-heading text-lg font-medium text-primary transition-colors hover:text-primary-dark"
-    >
-      {EMAIL}
-    </a>
+      <a
+        href={`mailto:${EMAIL}`}
+        class="self-start break-all font-heading text-3xl font-bold text-white underline decoration-surface-muted decoration-2 underline-offset-8 transition-colors hover:text-surface md:text-5xl"
+      >
+        {EMAIL}
+      </a>
 
-    <div class="flex flex-col gap-4">
-      <div class="flex flex-wrap gap-2">
-        {availability.map(item => (
-          <span class="border border-surface-muted px-2.5 py-1 text-sm text-text-muted">
-            {item}
-          </span>
-        ))}
+      <div class="flex flex-col gap-6">
+        <p class="text-sm text-surface">{availability.join(' · ')}</p>
+        <SocialLinks tone="inverse" />
       </div>
-      <SocialLinks />
-    </div>
 
+    </div>
   </div>
 </section>
