@@ -17,7 +17,7 @@ const quote = {
 };
 ---
 
-<section id="hero" class="flex min-h-[calc(100vh-4.5rem)] items-center">
+<section id="hero" class="flex min-h-[calc(100svh-4.5rem)] items-center">
   <div class="mx-auto w-full max-w-5xl px-6 py-20">
     <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
 
@@ -31,7 +31,7 @@ const quote = {
           class="flex w-fit items-center gap-2.5"
         >
           <span class="relative flex h-2 w-2">
-            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60"></span>
+            <span class="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-primary opacity-60"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
           </span>
           <span class="text-sm text-text-muted">{t('hero.availability')}</span>
@@ -60,13 +60,13 @@ const quote = {
         <div data-reveal="up" style="--reveal-delay: 240ms" class="flex flex-wrap gap-3">
           <a
             href={`/${lang}/#projects`}
-            class="inline-flex items-center bg-primary px-5 py-2.5 text-sm font-medium text-white transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-primary-dark"
+            class="inline-flex items-center bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-primary-dark"
           >
             {t('hero.cta.primary')}
           </a>
           <a
             href={`/${lang}/#contact`}
-            class="inline-flex items-center border border-surface-muted px-5 py-2.5 text-sm font-medium text-primary-dark transition-[color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-primary hover:text-primary"
+            class="inline-flex items-center border border-surface-muted px-5 py-2.5 text-sm font-medium text-primary-dark transition-colors duration-200 hover:border-primary hover:text-primary"
           >
             {t('hero.cta.secondary')}
           </a>
