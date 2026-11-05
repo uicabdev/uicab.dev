@@ -130,7 +130,7 @@ const navLinks = [
       {navLinks.map(link => (
         <a
           href={link.href}
-          class="text-text-muted hover:text-primary-dark aria-[current=true]:text-primary-dark aria-[current=true]:underline aria-[current=true]:underline-offset-8 transition-colors text-sm"
+          class="inline-flex min-h-11 items-center text-text-muted hover:text-primary-dark aria-[current=true]:text-primary-dark aria-[current=true]:underline aria-[current=true]:underline-offset-8 transition-colors text-sm"
           data-nav-link
           data-mobile-nav-link
         >
@@ -148,7 +148,7 @@ const navLinks = [
           href={CV_PATH}
           target="_blank"
           rel="noopener noreferrer"
-          class="border border-primary text-primary hover:bg-primary hover:text-white px-3 py-1.5 text-xs transition-colors font-medium"
+          class="border border-primary text-primary hover:bg-primary hover:text-white inline-flex min-h-11 items-center px-4 text-xs transition-colors font-medium"
         >
           {t('nav.cv')}
         </a>
@@ -196,6 +196,22 @@ const navLinks = [
   // Close menu on nav link click (smooth scroll to section)
   document.querySelectorAll('[data-mobile-nav-link]').forEach(link => {
     link.addEventListener('click', closeMenu);
+  });
+
+  // Cerrar el menú con Escape (devolviendo el foco al botón) o al tocar fuera del header.
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileMenu?.getAttribute('aria-hidden') === 'false') {
+      closeMenu();
+      menuBtn?.focus();
+    }
+  });
+  document.addEventListener('click', e => {
+    if (
+      mobileMenu?.getAttribute('aria-hidden') === 'false' &&
+      !(e.target as Element).closest('header')
+    ) {
+      closeMenu();
+    }
   });
 
   // Sección activa: marca con aria-current el enlace de la sección visible (solo en la home).

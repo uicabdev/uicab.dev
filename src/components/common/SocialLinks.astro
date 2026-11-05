@@ -8,8 +8,8 @@ interface Props {
 const { tone = 'default' } = Astro.props;
 const linkClass =
   tone === 'inverse'
-    ? 'text-surface hover:text-white transition-colors text-sm'
-    : 'text-text-muted hover:text-primary-dark transition-colors text-sm';
+    ? 'inline-flex min-h-11 items-center text-surface hover:text-white transition-colors text-sm'
+    : 'inline-flex min-h-11 items-center text-text-muted hover:text-primary-dark transition-colors text-sm';
 ---
 
 <div class="flex items-center gap-4">
