@@ -25,22 +25,22 @@ const prose = {
 
 <section id="about" class="bg-surface">
   <div class="mx-auto max-w-5xl px-6 py-24">
-  <div data-reveal="up" class="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
-
-    <!-- Título de sección (sticky en desktop) -->
-    <div>
-      <h2 class="font-heading text-3xl font-bold text-primary-dark md:sticky md:top-24">
-        {t('nav.about')}
-      </h2>
+    <div data-reveal="up" class="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
+  
+      <!-- Título de sección (sticky en desktop) -->
+      <div>
+        <h2 class="font-heading text-3xl font-bold text-primary-dark md:sticky md:top-24">
+          {t('nav.about')}
+        </h2>
+      </div>
+  
+      <!-- Prosa -->
+      <div class="flex flex-col gap-6">
+        {prose[lang].map(paragraph => (
+          <p class="leading-relaxed text-primary-dark">{paragraph}</p>
+        ))}
+      </div>
+  
     </div>
-
-    <!-- Prosa -->
-    <div class="flex flex-col gap-6">
-      {prose[lang].map(paragraph => (
-        <p class="leading-relaxed text-primary-dark">{paragraph}</p>
-      ))}
-    </div>
-
-  </div>
   </div>
 </section>
