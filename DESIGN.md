@@ -96,7 +96,7 @@ Ya no aplica: "dark mode como base".
 ## Arquitectura de información
 
 ```
-HEADER: UICAB | WORK | APPROACH | ABOUT | CONTACT
+HEADER: UICAB | WORK | APPROACH | EXPERIENCE | ABOUT | CONTACT
 1. Introduction       — nombre, especialidad, propuesta de valor, CTA
 2. Selected Work      — proyectos destacados, cada uno enlaza a su caso de estudio
 3. Technical Approach — Frontend Architecture / Complex Systems & Integrations / Quality & Reliability
@@ -104,6 +104,9 @@ HEADER: UICAB | WORK | APPROACH | ABOUT | CONTACT
 5. About              — perspectiva personal y profesional
 6. Contact            — email, LinkedIn, GitHub, CV
 ```
+
+Experience se añadió al header por decisión posterior al documento del rediseño (la crítica
+de impeccable señaló que el reclutador no llegaba a la evidencia). Orden del header = orden de la home.
 
 Navegación híbrida: la home es un recorrido continuo; cada proyecto de Selected Work
 tiene su propia página (`pages/{es,en}/work/[slug].astro`, Content Layer).
