@@ -52,36 +52,31 @@ const categories: Record<Lang, Category[]> = {
 };
 ---
 
-<section id="approach" class="mx-auto max-w-5xl border-t border-surface-muted px-6 py-24">
-  <div class="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
+<section id="approach" class="bg-surface">
+  <div class="mx-auto max-w-5xl px-6 py-24">
+    <h2 class="font-heading text-3xl font-bold text-primary-dark">
+      {t('nav.approach')}
+    </h2>
 
-    <div>
-      <h2 class="font-heading text-3xl font-bold text-primary-dark md:sticky md:top-24">
-        {t('nav.approach')}
-      </h2>
+    <div class="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
+      {categories[lang].map((cat, i) => (
+        <div
+          data-reveal="up"
+          style={`--reveal-delay: ${i * 90}ms`}
+          class="flex flex-col gap-4"
+        >
+          <h3 class="font-heading text-xl font-bold text-primary-dark">{cat.title}</h3>
+          <p class="text-base leading-relaxed text-text-muted">{cat.communicates}</p>
+          <p class="mt-auto text-sm text-text-muted">
+            <span class="font-medium text-primary">{t('approach.evidence')}:</span>
+            <span class="mt-1 block font-mono text-[0.8125rem] leading-relaxed">{cat.evidence}</span>
+          </p>
+        </div>
+      ))}
     </div>
 
-    <div class="flex flex-col gap-10">
-      <div class="flex flex-col gap-8">
-        {categories[lang].map((cat, i) => (
-          <div
-            data-reveal="up"
-            style={`--reveal-delay: ${i * 90}ms`}
-            class="flex flex-col gap-3 border-b border-surface-muted pb-8 last:border-b-0 last:pb-0"
-          >
-            <h3 class="font-heading text-xl font-bold text-primary-dark">{cat.title}</h3>
-            <p class="text-base leading-relaxed text-text-muted">{cat.communicates}</p>
-            <p class="text-sm text-text-muted">
-              <span class="font-medium text-primary">{t('approach.evidence')}:</span>
-              {' '}{cat.evidence}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <p class="border-t border-surface-muted pt-8 text-sm leading-relaxed text-text-muted">
-        {t('stack.note')}
-      </p>
-    </div>
+    <p class="mt-16 max-w-3xl text-sm leading-relaxed text-text-muted">
+      {t('stack.note')}
+    </p>
   </div>
 </section>

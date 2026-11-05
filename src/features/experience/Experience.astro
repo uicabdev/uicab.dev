@@ -36,7 +36,7 @@ const localized: Record<'es' | 'en', { period: string; paragraphs: string[]; foo
 const { period, paragraphs, footnote } = localized[lang];
 ---
 
-<section id="experience" class="mx-auto max-w-5xl border-t border-surface-muted px-6 py-24">
+<section id="experience" class="mx-auto max-w-5xl border-t border-surface-muted px-6 py-16">
   <div data-reveal="up" class="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
 
     <!-- Título de sección (sticky en desktop) -->
@@ -52,7 +52,7 @@ const { period, paragraphs, footnote } = localized[lang];
       <!-- Empresa + período + rol -->
       <div>
         <p class="font-heading font-bold text-primary-dark">
-          {company}<span class="font-normal text-text-muted"> — {period}</span>
+          {company}<span class="font-mono text-sm font-normal text-text-muted"> — {period}</span>
         </p>
         <p class="mt-1 font-heading font-medium text-text-muted">{role}</p>
       </div>
