@@ -1,37 +1,28 @@
 @import "tailwindcss";
 
+/* Tokens: ver DESIGN.md (fuente única). Light-only; no hay tokens dark. */
 @theme {
-  --color-bg-base: #1E1E1E;
-  --color-surface: #2A2A2A;
-  --color-border: #333333;
-  --color-accent: #3DD9A8;
-  --color-accent-hover: #2aaa84;
-  --color-text-primary: #F0EDE8;
-  --color-text-secondary: #949998;
+  --color-background: #F8FAF6;
+  --color-surface: #E6EDE4;
+  --color-surface-muted: #CBD5C6;
+  --color-accent-soft: #7A987F;
+  --color-primary: #3F6B56;
+  --color-primary-dark: #2F4E3D;
+  --color-white: #FFFFFF;
 
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  /* Alias transitorios: los componentes aún usan los nombres del diseño dark.
+     Se migran a los tokens de arriba sección por sección y luego se eliminan.
+     text-secondary es provisional: pendiente de verificación de contraste AA. */
+  --color-bg-base: var(--color-background);
+  --color-border: var(--color-surface-muted);
+  --color-accent: var(--color-primary);
+  --color-accent-hover: var(--color-primary-dark);
+  --color-text-primary: var(--color-primary-dark);
+  --color-text-secondary: var(--color-primary);
+
+  --font-heading: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-}
-
-:root {
-  --color-bg-base: #F0EDE8;
-  --color-surface: #E8E4DC;
-  --color-border: #D9D4C9;
-  --color-accent: #17694F;
-  --color-accent-hover: #12523E;
-  --color-text-primary: #1E1E1E;
-  --color-text-secondary: #635F57;
-}
-
-.dark {
-  --color-bg-base: #1E1E1E;
-  --color-surface: #2A2A2A;
-  --color-border: #333333;
-  --color-accent: #3DD9A8;
-  --color-accent-hover: #2aaa84;
-  --color-text-primary: #F0EDE8;
-  --color-text-secondary: #949998;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
