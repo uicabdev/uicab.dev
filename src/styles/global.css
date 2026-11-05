@@ -11,9 +11,9 @@
   --color-white: #FFFFFF;
   --color-text-muted: #52655A; /* derivado, ver DESIGN.md > Contraste */
 
-  --font-heading: 'Fraunces', serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-heading: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
