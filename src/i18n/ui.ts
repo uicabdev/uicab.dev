@@ -29,6 +29,7 @@ export const ui = {
     'hero.scroll': 'Ir abajo',
     'projects.status.inprogress': 'En desarrollo',
     'projects.readmore': 'Ver caso de estudio',
+    'projects.back': 'Volver a proyectos',
   },
   en: {
     'nav.work': 'Work',
@@ -53,5 +54,6 @@ export const ui = {
     'hero.scroll': 'Scroll down',
     'projects.status.inprogress': 'In progress',
     'projects.readmore': 'Read case study',
+    'projects.back': 'Back to projects',
   },
 } as const;

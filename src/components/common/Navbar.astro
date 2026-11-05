@@ -10,6 +10,7 @@ interface Props {
 const { lang = 'es' } = Astro.props;
 const t = useTranslations(lang);
 const altLang = lang === 'es' ? 'en' : 'es';
+const altHref = Astro.url.pathname.replace(`/${lang}/`, `/${altLang}/`);
 
 const navLinks = [
   { href: `/${lang}/#projects`, label: t('nav.work') },
@@ -37,7 +38,7 @@ const navLinks = [
         </a>
       ))}
       <a
-        href={`/${altLang}/`}
+        href={altHref}
         class="text-text-secondary hover:text-accent transition-colors text-xs font-medium uppercase tracking-wide"
         aria-label={altLang === 'en' ? 'Switch to English' : 'Cambiar a Español'}
       >
@@ -135,7 +136,7 @@ const navLinks = [
       ))}
       <div class="flex items-center gap-4 pt-4 border-t border-border">
         <a
-          href={`/${altLang}/`}
+          href={altHref}
           class="text-text-secondary hover:text-accent transition-colors text-xs font-medium uppercase tracking-wide"
         >
           {altLang === 'en' ? 'EN — English' : 'ES — Español'}
