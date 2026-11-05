@@ -9,16 +9,17 @@
   --color-primary: #3F6B56;
   --color-primary-dark: #2F4E3D;
   --color-white: #FFFFFF;
+  --color-text-muted: #52655A; /* derivado, ver DESIGN.md > Contraste */
 
   /* Alias transitorios: los componentes aún usan los nombres del diseño dark.
      Se migran a los tokens de arriba sección por sección y luego se eliminan.
-     text-secondary es provisional: pendiente de verificación de contraste AA. */
+     text-secondary apunta al token derivado text-muted. */
   --color-bg-base: var(--color-background);
   --color-border: var(--color-surface-muted);
   --color-accent: var(--color-primary);
   --color-accent-hover: var(--color-primary-dark);
   --color-text-primary: var(--color-primary-dark);
-  --color-text-secondary: var(--color-primary);
+  --color-text-secondary: var(--color-text-muted);
 
   --font-heading: 'Fraunces', serif;
   --font-body: 'Inter', sans-serif;

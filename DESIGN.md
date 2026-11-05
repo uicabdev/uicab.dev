@@ -18,12 +18,39 @@ diseño se registra aquí, no en `CLAUDE.md`.
 | `--color-primary` | `#3F6B56` | Acciones, enlaces |
 | `--color-primary-dark` | `#2F4E3D` | Texto fuerte, fondos oscuros (ej. footer de Contact) |
 | `--color-white` | `#FFFFFF` | Tarjetas, texto sobre fondo oscuro |
+| `--color-text-muted` | `#52655A` | Texto secundario (derivado, ver Contraste) |
 
 No introducir colores fuera de esta tabla sin registrarlo aquí primero.
 
 ### Contraste
 Mínimo WCAG AA (4.5:1 texto normal). `#7A987F` sobre `#F8FAF6` da 3.0:1: solo
 detalles gráficos, nunca texto normal.
+
+### Contraste (verificado, auditoría `impeccable`)
+
+Ratios calculados sobre los tokens finales (WCAG 2.x):
+
+| Par | Ratio | AA texto normal |
+|---|---|---|
+| `primary-dark` / background | 8.78 | ✓ |
+| `primary-dark` / surface | 7.73 | ✓ |
+| `primary` / background | 5.80 | ✓ |
+| `primary` / surface | 5.10 | ✓ |
+| `white` / `primary` (botón primario) | 6.09 | ✓ |
+| `white` / `primary-dark` (footer, hover) | 9.22 | ✓ |
+| `text-muted` / background | 5.94 | ✓ |
+| `text-muted` / surface | 5.23 | ✓ |
+| `accent-soft` / background | 3.02 | ✗ solo gráfico |
+| `white` / `accent-soft` | 3.17 | ✗ no usar en botón |
+| `surface-muted` / background | 1.44 | solo divisor decorativo |
+
+**Token derivado (no estaba en la tabla original):** `--color-text-muted: #52655A`,
+para texto secundario. Mismo matiz verde que `primary-dark`, más claro y menos
+saturado, para que se distinga de los enlaces (`primary`). Usar solo sobre
+`background`, `surface` o `white`; sobre `surface-muted` da 4.12:1 y no pasa.
+
+Los bordes de controles interactivos usan `primary` (5.80:1, cumple 3:1 de UI);
+`surface-muted` solo en divisores no esenciales.
 
 ### Botones
 - Primario: `#3F6B56`, hover `#2F4E3D`.
