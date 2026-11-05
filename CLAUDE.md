@@ -19,36 +19,9 @@ antes de improvisar una alternativa.
 ### Package manager
 `pnpm`. No alternes con npm/yarn en los comandos.
 
-### Paleta — tokens exactos (definir en `styles/global.css`, `:root` + `.dark`)
-Dark es la base/identidad del proyecto. Light existe como tema real (toggle
-funcional) — mismos 7 roles, valores propios por tema, verificados WCAG AA.
-
-| Rol | Dark (base) | Light |
-|---|---|---|
-| Fondo base | `#1E1E1E` | `#F0EDE8` |
-| Superficie (cards, navbar) | `#2A2A2A` | `#E8E4DC` |
-| Borde / separadores | `#333333` | `#D9D4C9` |
-| Acento principal | `#3DD9A8` | `#17694F` |
-| Acento hover | `#2aaa84` | `#12523E` |
-| Texto primario | `#F0EDE8` | `#1E1E1E` |
-| Texto secundario | `#949998` | `#635F57` |
-
-El acento se oscurece en light mode (mismo hue) porque el verde-menta original
-cae a 1.54:1 de contraste como texto sobre fondo claro — el ajuste es necesario
-para accesibilidad, no un color nuevo fuera de la paleta.
-
-No introduzcas colores fuera de esta tabla. El acento es uno solo, usado con criterio.
-
-### Tipografía (Google Fonts)
-- **Space Grotesk** — títulos/headings. 700 para nombres, 500 para subtítulos.
-- **DM Sans** — cuerpo y UI. 400 texto, 500 énfasis.
-- **JetBrains Mono** — código y snippets. 400.
-
-### Principios visuales (cumplir siempre)
-- Dark mode como base.
-- Sin gradientes ni sombras decorativas.
-- Espaciado generoso como elemento de diseño.
-- La tipografía es la jerarquía principal, no el color.
+### Diseño
+Paleta, tipografía, theming (light-only) y principios visuales viven en **`DESIGN.md`**
+(fuente única; reemplaza la dirección dark original). No los dupliques aquí.
 
 ---
 
@@ -123,6 +96,6 @@ activan en el MVP** (son Fase 3).
 - No meter prose larga en `ui.ts`.
 - No poner lógica en las páginas: las páginas componen features.
 - No reescribir el contenido ES/EN del plan.
-- No introducir colores ni fuentes fuera de los definidos arriba.
+- No introducir colores ni fuentes fuera de los definidos en `DESIGN.md`.
 - No `client:load` por defecto si en algún momento se justifica una island: empezar por
   `client:visible`.
