@@ -23,12 +23,12 @@ const prose = {
 };
 ---
 
-<section id="about" class="mx-auto max-w-5xl border-t border-border px-6 py-24">
+<section id="about" class="mx-auto max-w-5xl border-t border-surface-muted px-6 py-24">
   <div data-reveal="up" class="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
 
     <!-- Título de sección (sticky en desktop) -->
     <div>
-      <h2 class="font-heading text-3xl font-bold text-text-primary md:sticky md:top-24">
+      <h2 class="font-heading text-3xl font-bold text-primary-dark md:sticky md:top-24">
         {t('nav.about')}
       </h2>
     </div>
@@ -36,7 +36,7 @@ const prose = {
     <!-- Prosa -->
     <div class="flex flex-col gap-6">
       {prose[lang].map(paragraph => (
-        <p class="leading-relaxed text-text-secondary">{paragraph}</p>
+        <p class="leading-relaxed text-text-muted">{paragraph}</p>
       ))}
     </div>
 

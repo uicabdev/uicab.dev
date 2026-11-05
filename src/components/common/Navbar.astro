@@ -20,10 +20,10 @@ const navLinks = [
 ];
 ---
 
-<header class="bg-surface border-b border-border sticky top-0 z-50">
+<header class="bg-surface border-b border-surface-muted sticky top-0 z-50">
   <nav class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href={`/${lang}/`} class="font-heading font-bold text-text-primary text-lg tracking-tight">
+    <a href={`/${lang}/`} class="font-heading font-bold text-primary-dark text-lg tracking-tight">
       uicab.dev
     </a>
 
@@ -32,21 +32,21 @@ const navLinks = [
       {navLinks.map(link => (
         <a
           href={link.href}
-          class="text-text-secondary hover:text-text-primary transition-colors text-sm"
+          class="text-text-muted hover:text-primary-dark transition-colors text-sm"
         >
           {link.label}
         </a>
       ))}
       <a
         href={altHref}
-        class="text-text-secondary hover:text-accent transition-colors text-xs font-medium uppercase tracking-wide"
+        class="text-text-muted hover:text-primary transition-colors text-xs font-medium uppercase tracking-wide"
         aria-label={altLang === 'en' ? 'Switch to English' : 'Cambiar a Español'}
       >
         {altLang}
       </a>
       {THEME_TOGGLE_ENABLED && (<button
         data-theme-toggle
-        class="text-text-secondary hover:text-text-primary transition-colors w-5 h-5 flex items-center justify-center"
+        class="text-text-muted hover:text-primary-dark transition-colors w-5 h-5 flex items-center justify-center"
         aria-label={lang === 'es' ? 'Cambiar tema' : 'Toggle theme'}
       >
         <!-- Sun: visible in dark mode to switch to light -->
@@ -70,7 +70,7 @@ const navLinks = [
         href={CV_PATH}
         target="_blank"
         rel="noopener noreferrer"
-        class="border border-accent text-accent hover:bg-accent hover:text-bg-base px-3 py-1.5 text-xs transition-colors font-medium"
+        class="border border-primary text-primary hover:bg-primary hover:text-white px-3 py-1.5 text-xs transition-colors font-medium"
       >
         {t('nav.cv')}
       </a>
@@ -80,7 +80,7 @@ const navLinks = [
     <div class="flex items-center gap-2 md:hidden">
       {THEME_TOGGLE_ENABLED && (<button
         data-theme-toggle
-        class="text-text-secondary hover:text-text-primary transition-colors w-11 h-11 flex items-center justify-center"
+        class="text-text-muted hover:text-primary-dark transition-colors w-11 h-11 flex items-center justify-center"
         aria-label={lang === 'es' ? 'Cambiar tema' : 'Toggle theme'}
       >
         <svg class="hidden dark:block" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -100,7 +100,7 @@ const navLinks = [
       </button>)}
       <button
         id="menu-toggle"
-        class="text-text-secondary hover:text-text-primary transition-colors w-11 h-11 flex items-center justify-center"
+        class="text-text-muted hover:text-primary-dark transition-colors w-11 h-11 flex items-center justify-center"
         aria-expanded="false"
         aria-controls="mobile-menu"
         aria-label={lang === 'es' ? 'Abrir menú' : 'Open menu'}
@@ -121,23 +121,23 @@ const navLinks = [
   <!-- Mobile menu dropdown -->
   <div
     id="mobile-menu"
-    class="hidden border-t border-border md:hidden"
+    class="hidden border-t border-surface-muted md:hidden"
     aria-hidden="true"
   >
     <div class="max-w-5xl mx-auto px-6 py-6 flex flex-col gap-5">
       {navLinks.map(link => (
         <a
           href={link.href}
-          class="text-text-secondary hover:text-text-primary transition-colors text-sm"
+          class="text-text-muted hover:text-primary-dark transition-colors text-sm"
           data-mobile-nav-link
         >
           {link.label}
         </a>
       ))}
-      <div class="flex items-center gap-4 pt-4 border-t border-border">
+      <div class="flex items-center gap-4 pt-4 border-t border-surface-muted">
         <a
           href={altHref}
-          class="text-text-secondary hover:text-accent transition-colors text-xs font-medium uppercase tracking-wide"
+          class="text-text-muted hover:text-primary transition-colors text-xs font-medium uppercase tracking-wide"
         >
           {altLang === 'en' ? 'EN — English' : 'ES — Español'}
         </a>
@@ -145,7 +145,7 @@ const navLinks = [
           href={CV_PATH}
           target="_blank"
           rel="noopener noreferrer"
-          class="border border-accent text-accent hover:bg-accent hover:text-bg-base px-3 py-1.5 text-xs transition-colors font-medium"
+          class="border border-primary text-primary hover:bg-primary hover:text-white px-3 py-1.5 text-xs transition-colors font-medium"
         >
           {t('nav.cv')}
         </a>

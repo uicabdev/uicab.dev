@@ -38,10 +38,10 @@ const { title, description, lang = 'es' } = Astro.props;
     </script>
     <SEO title={title} description={description} lang={lang} />
   </head>
-  <body class="bg-bg-base text-text-primary font-body min-h-screen">
+  <body class="bg-background text-primary-dark font-body min-h-screen">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-bg-base focus:text-sm focus:font-medium"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:text-sm focus:font-medium"
     >
       {lang === 'en' ? 'Skip to content' : 'Ir al contenido'}
     </a>
