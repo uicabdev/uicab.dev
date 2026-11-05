@@ -1,0 +1,87 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+
+// Fuente: contexto/rediseno-uicabdev-definicion.md §5. Los títulos y el texto en ES son
+// literales de la tabla; la versión EN es traducción de esa misma tabla.
+// PENDIENTE (autor): las "2–3 líneas de criterio" por categoría aún no están redactadas.
+type Category = { title: string; communicates: string; evidence: string };
+
+const categories: Record<Lang, Category[]> = {
+  es: [
+    {
+      title: 'Frontend Architecture',
+      communicates: 'Diseño de componentes, patrones reutilizables, arquitecturas escalables',
+      evidence: 'Stratum, rediseño del gestor de tareas, React/TypeScript/Astro',
+    },
+    {
+      title: 'Complex Systems & Integrations',
+      communicates: 'Manejo de multi-actor, permisos, estados, APIs externas',
+      evidence: 'Sistema de créditos automotrices, sistema de subastas',
+    },
+    {
+      title: 'Quality & Reliability',
+      communicates: 'Testing, refactorización, mantenibilidad',
+      evidence: 'Vitest, Playwright, refactor de legacy en Innovaforce',
+    },
+  ],
+  en: [
+    {
+      title: 'Frontend Architecture',
+      communicates: 'Component design, reusable patterns, scalable architectures',
+      evidence: 'Stratum, task manager redesign, React/TypeScript/Astro',
+    },
+    {
+      title: 'Complex Systems & Integrations',
+      communicates: 'Multi-actor handling, permissions, state, external APIs',
+      evidence: 'Automotive credit system, auction system',
+    },
+    {
+      title: 'Quality & Reliability',
+      communicates: 'Testing, refactoring, maintainability',
+      evidence: 'Vitest, Playwright, legacy refactor at Innovaforce',
+    },
+  ],
+};
+---
+
+<section id="approach" class="mx-auto max-w-5xl border-t border-border px-6 py-24">
+  <div class="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
+
+    <div>
+      <h2 class="font-heading text-3xl font-bold text-text-primary md:sticky md:top-24">
+        {t('nav.approach')}
+      </h2>
+    </div>
+
+    <div class="flex flex-col gap-10">
+      <div class="flex flex-col gap-8">
+        {categories[lang].map((cat, i) => (
+          <div
+            data-reveal="up"
+            style={`--reveal-delay: ${i * 90}ms`}
+            class="flex flex-col gap-3 border-b border-border pb-8 last:border-b-0 last:pb-0"
+          >
+            <h3 class="font-heading text-xl font-bold text-text-primary">{cat.title}</h3>
+            <p class="text-base leading-relaxed text-text-secondary">{cat.communicates}</p>
+            <p class="text-sm text-text-secondary">
+              <span class="font-medium text-accent">{t('approach.evidence')}:</span>
+              {' '}{cat.evidence}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <p class="border-t border-border pt-8 text-sm leading-relaxed text-text-secondary">
+        {t('stack.note')}
+      </p>
+    </div>
+  </div>
+</section>

@@ -8,10 +8,10 @@ export type Lang = keyof typeof languages;
 export const ui = {
   es: {
     'nav.work': 'Trabajo',
+    'approach.evidence': 'Respaldado por',
     'nav.approach': 'Enfoque',
     'nav.about': 'Sobre mí',
     'nav.projects': 'Proyectos',
-    'nav.stack': 'Stack',
     'nav.experience': 'Experiencia',
     'nav.contact': 'Contacto',
     'nav.cv': 'CV',
@@ -32,10 +32,10 @@ export const ui = {
   },
   en: {
     'nav.work': 'Work',
+    'approach.evidence': 'Backed by',
     'nav.approach': 'Approach',
     'nav.about': 'About',
     'nav.projects': 'Projects',
-    'nav.stack': 'Stack',
     'nav.experience': 'Experience',
     'nav.contact': 'Contact',
     'nav.cv': 'CV',
