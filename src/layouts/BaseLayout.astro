@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { THEME_TOGGLE_ENABLED } from '../consts';
 import SEO from '../components/common/SEO.astro';
 
 interface Props {
@@ -23,13 +24,13 @@ const { title, description, lang = 'es' } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap"
       rel="stylesheet"
     />
-    <script is:inline>
+    <script is:inline define:vars={{ allowDark: THEME_TOGGLE_ENABLED }}>
       (function () {
         document.documentElement.classList.add('js');
         try {
           const stored = localStorage.getItem('theme');
           const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (stored === 'dark' || (!stored && prefersDark)) {
+          if (allowDark && (stored === 'dark' || (!stored && prefersDark))) {
             document.documentElement.classList.add('dark');
           }
         } catch (_) {}
