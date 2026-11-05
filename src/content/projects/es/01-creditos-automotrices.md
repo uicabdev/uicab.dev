@@ -1,6 +1,7 @@
 ---
 title: Sistema de créditos automotrices
 description: Plataforma integral de gestión de créditos automotrices con flujos multi-actor y firma digital.
+slug: automotive-credits
 order: 1
 status: done
 ---

@@ -1,6 +1,7 @@
 ---
 title: Rediseño gestor de tareas
 description: Rediseño completo de un gestor de tareas interno — nueva arquitectura, nueva interfaz, nueva navegación.
+slug: task-manager
 order: 3
 status: in-progress
 ---

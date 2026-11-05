@@ -4,6 +4,7 @@ import { glob } from 'astro/loaders';
 const projectSchema = z.object({
   title: z.string(),
   description: z.string(),
+  slug: z.string(),
   order: z.number(),
   status: z.enum(['done', 'in-progress']).default('done'),
 });

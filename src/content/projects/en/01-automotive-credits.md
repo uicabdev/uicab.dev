@@ -1,6 +1,7 @@
 ---
 title: Automotive credit management system
 description: Comprehensive automotive credit management platform with multi-actor workflows and digital signing.
+slug: automotive-credits
 order: 1
 status: done
 ---

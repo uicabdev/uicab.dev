@@ -1,6 +1,7 @@
 ---
 title: Auction system
 description: Multi-audience system unifying admin panel and participant portal in a single platform.
+slug: auction-system
 order: 2
 status: done
 ---

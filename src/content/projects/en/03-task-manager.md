@@ -1,6 +1,7 @@
 ---
 title: Task manager rebuild
 description: Full rebuild of an internal task manager — new architecture, new UI, new navigation.
+slug: task-manager
 order: 3
 status: in-progress
 ---

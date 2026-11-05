@@ -1,6 +1,7 @@
 ---
 title: Sistema de subastas
 description: Sistema multi-audiencia que unifica panel administrativo y portal de participantes en una sola plataforma.
+slug: auction-system
 order: 2
 status: done
 ---
