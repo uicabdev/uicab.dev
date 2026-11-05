@@ -16,7 +16,7 @@ const { Content } = await render(project);
 <article class="mx-auto max-w-3xl px-6 py-16 md:py-24">
   <a
     href={`/${lang}/#projects`}
-    class="inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-primary"
+    class="inline-flex min-h-11 items-center gap-2 text-sm text-text-muted transition-colors hover:text-primary"
   >
     <span aria-hidden="true">←</span>
     {t('projects.back')}
@@ -47,7 +47,7 @@ const { Content } = await render(project);
   <footer class="mt-16 border-t border-surface-muted pt-10">
     <a
       href={`/${lang}/#contact`}
-      class="inline-flex min-h-11 items-center font-heading text-2xl font-bold text-primary-dark transition-colors hover:text-primary"
+      class="block min-h-11 py-1 font-heading text-2xl font-bold text-primary-dark transition-colors hover:text-primary"
     >
       {t('contact.title')} <span aria-hidden="true" class="ml-2">→</span>
     </a>

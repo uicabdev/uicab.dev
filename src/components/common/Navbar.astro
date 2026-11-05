@@ -33,7 +33,7 @@ const navLinks = [
       {navLinks.map(link => (
         <a
           href={link.href}
-          class="text-text-muted hover:text-primary-dark aria-[current=true]:text-primary-dark aria-[current=true]:underline aria-[current=true]:underline-offset-8 transition-colors text-sm"
+          class="py-1 text-text-muted hover:text-primary-dark aria-[current=true]:text-primary-dark aria-[current=true]:underline aria-[current=true]:underline-offset-8 transition-colors text-sm"
           data-nav-link
         >
           {link.label}
@@ -41,7 +41,7 @@ const navLinks = [
       ))}
       <a
         href={altHref}
-        class="text-text-muted hover:text-primary transition-colors text-xs font-medium uppercase tracking-wide"
+        class="px-1 py-1.5 text-text-muted hover:text-primary transition-colors text-xs font-medium uppercase tracking-wide"
         aria-label={altLang === 'en' ? 'Switch to English' : 'Cambiar a Español'}
       >
         {altLang}

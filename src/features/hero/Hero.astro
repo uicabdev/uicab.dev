@@ -83,7 +83,7 @@ const quote = {
         <div
           data-reveal="fade"
           style="--reveal-delay: 120ms"
-          class="h-56 w-56 overflow-hidden md:h-72 md:w-72"
+          class="h-56 w-56 max-w-full overflow-hidden md:h-72 md:w-72"
         >
           <picture>
             <source srcset={HERO_IMAGE_WEBP} type="image/webp" />
@@ -105,7 +105,7 @@ const quote = {
       <a
         href={`/${lang}/#projects`}
         aria-label={t('hero.scroll')}
-        class="scroll-hint text-text-muted transition-colors hover:text-primary"
+        class="scroll-hint inline-flex min-h-11 min-w-11 items-center justify-center text-text-muted transition-colors hover:text-primary"
       >
         <svg
           width="20"
