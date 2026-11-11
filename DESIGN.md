@@ -64,7 +64,8 @@ enlaces (`primary`). Usar solo sobre `background`, `surface` o `white`.
 ### Foco
 Un solo tratamiento global: contorno 2px `primary`, desplazamiento 3px
 (`:focus-visible`). Dentro de las bandas oscuras (`data-surface="dark"`) el contorno es
-blanco.
+blanco. Las seis secciones de la home llevan `tabindex="-1"` para recibir el foco al llegar por
+un ancla (el siguiente Tab continúa desde ahí); al no ser controles, no dibujan anillo.
 
 ---
 
@@ -111,6 +112,9 @@ blanco.
 - Solo se cargan los pesos 600/700 de Fraunces: no usar `font-medium` con `font-heading`.
 - Comillas tipográficas (“ ” ’): la cita del Hero las convierte al renderizar; el texto
   fuente conserva las comillas rectas tal como el autor lo escribió.
+- Líneas de texto: `text-wrap: balance` en `h1`–`h3` (costoso, solo en títulos cortos) y
+  `text-wrap: pretty` en `p` y `li`. Es mejora progresiva. Medido a 390px: palabras sueltas al
+  final de línea en 9 de 24 bloques antes, 1 de 24 después.
 
 ---
 
@@ -163,7 +167,10 @@ blanco.
   idioma `ES | EN` en escritorio, con el idioma actual en `primary-dark` y sin enlace; el
   otro idioma conserva la ruta actual.
 - **Indicador de disponibilidad (Hero):** punto `primary` de 8px con halo `animate-ping`
-  solo si el usuario permite movimiento.
+  solo si el usuario permite movimiento, limitado a 3 iteraciones (~3s) con `.ping-limited`:
+  un movimiento automático de más de 5s exige un control de pausa (WCAG 2.2.2, nivel A).
+- **Foto del Hero:** `fetchpriority="high"` (es el LCP en escritorio; pasa de prioridad Media a
+  Alta). Nunca `loading="lazy"` en ella.
 - **Banda de cierre (Contact + Footer):** fondo `primary-dark`, titular blanco, texto en
   `surface`, email como elemento más grande (Fraunces 700, subrayado 2px `surface-muted`,
   `break-all`), disponibilidad en una línea separada por " · " y enlaces sociales en
@@ -265,11 +272,17 @@ Decidido por mérito, no por precedencia:
   768px; solo importaría si se añade un idioma.
 - Sin verificar en un dispositivo físico: destello al tocar, color de la barra del navegador
   y comportamiento en horizontal.
-- Movimiento, pendiente de decisión del autor (revisión con `review-animations`): el halo
-  `animate-ping` del punto "Disponible" es infinito (1s) y es la única animación sin fin;
+- Movimiento, pendiente de decisión del autor (revisión con `review-animations`):
   `scroll-behavior: smooth` tarda 700–933ms por clic de navegación y también anima los saltos por
   teclado; la flecha de las tarjetas usa la curva integrada de Tailwind en vez de
   `cubic-bezier(0.23, 1, 0.32, 1)`.
+- Alternativas de la guía `modern-web-guidance` evaluadas y **no aplicadas** por ahora: menú móvil
+  con la API nativa `popover` (daría Escape, tocar fuera y foco gratis, pero cambia el layout del
+  header y sustituye lo ya verificado); reveal con `animation-timeline: view()` (quitaría JS y el
+  respaldo, pero es un efecto atado al scroll y se perdería el escalonado y la curva medidos);
+  scrollspy nativo `scroll-target-group` (solo Chromium: habría que conservar el observador).
+- Si se reactiva el toggle de tema: actualizar también `<meta name="color-scheme">` (el escaneo
+  de la guía marca `Navbar.astro` y `BaseLayout.astro` por ese motivo).
 - Evidencia visual del trabajo (diagramas o capturas) en tarjetas y casos: pendiente, depende
   de qué puede mostrar el autor. Sin métricas inventadas.
 - `BlogLayout` es un envoltorio sin uso hasta la Fase 3.
