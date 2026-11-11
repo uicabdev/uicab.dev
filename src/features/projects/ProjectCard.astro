@@ -12,6 +12,13 @@ interface Props {
 const { project, lang, index = 0 } = Astro.props;
 const t = useTranslations(lang);
 const href = `/${lang}/work/${project.data.slug}/`;
+
+// Extracto literal del caso: primera frase de la primera sección ("El problema" / "The problem").
+// El texto y su encabezado salen del markdown tal cual; no se reescribe nada.
+const clean = (s: string) => s.replace(/[*_`]/g, '').trim();
+const [, heading, ...rest] = (project.body ?? '').split(/^### (.+)$/m);
+const firstParagraph = clean((rest[0] ?? '').trim().split(/\n\s*\n/)[0] ?? '');
+const excerpt = (firstParagraph.match(/^.*?[.!?](?=\s|$)/s)?.[0] ?? firstParagraph).trim();
 ---
 
 <article
@@ -33,6 +40,11 @@ const href = `/${lang}/work/${project.data.slug}/`;
     <p class="mt-2 text-sm leading-relaxed text-text-muted">
       {project.data.description}
     </p>
+    {excerpt && (
+      <p class="mt-4 line-clamp-3 text-sm leading-relaxed text-primary-dark">
+        <span class="font-medium">{clean(heading ?? '')}:</span> {excerpt}
+      </p>
+    )}
     <span class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors group-hover:text-primary-dark">
       {t('projects.readmore')}
       <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">→</span>
