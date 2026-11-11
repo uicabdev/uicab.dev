@@ -18,17 +18,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Theme toggle: cross-fade colors instead of an instant hard cut. Scoped to
-   elements without their own explicit transition (Tailwind's transition-*
-   utilities have higher specificity and keep their own tuned timing). */
-@media (prefers-reduced-motion: no-preference) {
-  *,
-  *::before,
-  *::after {
-    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
-      fill 0.25s ease, stroke 0.25s ease;
-  }
-}
+/* Nota: no hay una regla global `* { transition: ... }`. Existió para el fundido del toggle de
+   tema, pero al no estar en una capa ganaba a las utilidades transition-* de Tailwind (que sí
+   están en @layer) y anulaba, por ejemplo, la transición de transform de las flechas.
+   Cuando se reactive el toggle de tema, añadir el fundido solo mientras dura el cambio. */
 
 /* Smooth anchor-link scrolling (nav, hero scroll hint, in-page CTAs). */
 @media (prefers-reduced-motion: no-preference) {
@@ -42,8 +35,8 @@
    No-JS and prefers-reduced-motion both leave content visible from the start. */
 @media (prefers-reduced-motion: no-preference) {
   html.js [data-reveal] {
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
