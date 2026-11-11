@@ -132,6 +132,9 @@ blanco.
   (About) → `primary-dark` (Contact + Footer). Entre secciones del mismo fondo, un
   divisor `surface-muted` de 1px.
 - Zonas táctiles: mínimo 44px en móvil y 24px en escritorio (WCAG 2.2 AA).
+- Sin desborde horizontal desde 195px de ancho (el mínimo de WCAG es 320px): las celdas de la
+  cuadrícula usan `minmax(0, 1fr)` y títulos y párrafos rompen palabras largas solo si no caben
+  (`overflow-wrap: anywhere`). Por debajo de 260px se oculta el enlace "Contacto" del header móvil.
 
 ## Formas y elevación
 
@@ -247,8 +250,6 @@ Decidido por mérito, no por precedencia:
 - Marcado duplicado de enlaces de navegación y toggle entre escritorio y móvil.
 - Los botones del Hero repiten clases en línea en lugar de ser un componente.
 - Valores sueltos fuera de escala: `text-[0.8125rem]`, `z-[100]`.
-- Palabras largas sin espacios desbordan en títulos (no ocurre con el contenido actual);
-  el Hero desborda ~80px a 195px de ancho, por debajo del mínimo de 320px de WCAG.
 - Títulos de Approach en inglés dentro de la página en español y "líneas de criterio" por
   categoría sin redactar: contenido del autor, pendiente.
 - Dos pesos de Fraunces casi iguales (700 y 600) en la primera vista del Hero.
@@ -259,7 +260,6 @@ Decidido por mérito, no por precedencia:
   y comportamiento en horizontal.
 - Evidencia visual del trabajo (diagramas o capturas) en tarjetas y casos: pendiente, depende
   de qué puede mostrar el autor. Sin métricas inventadas.
-- A 195px de ancho (bajo el mínimo de 320px de WCAG) la página de caso desborda ~44px.
 - `BlogLayout` es un envoltorio sin uso hasta la Fase 3.
 
 ---
