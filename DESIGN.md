@@ -77,6 +77,8 @@ blanco.
 - El script inline anti-FOUC de `BaseLayout.astro` se mantiene, pero fuerza `light`
   sin importar `localStorage` ni `prefers-color-scheme` mientras el flag esté apagado.
 - No se definen tokens dark en esta etapa; se definen cuando se reactive.
+- Navegador móvil: `<meta name="theme-color" content="#E6EDE4">` (el tono del header) y
+  `<meta name="color-scheme" content="light">`.
 
 ---
 
@@ -166,16 +168,26 @@ blanco.
 - **Página de caso:** columna de 768px, enlace de regreso, h1, descripción y cuerpo del
   markdown (secciones en h2 Fraunces 1.25rem, párrafos en `primary-dark`). Al final: tarjeta
   "Siguiente proyecto" (por orden; el último vuelve al primero) y la misma banda oscura de
-  Contact de la home, para que el cierre conserve su peso.
+  Contact de la home, para que el cierre conserve su peso. Los párrafos del cuerpo rompen
+  URLs largas (`overflow-wrap: anywhere`) para no desbordar en móvil.
 
 ## Movimiento
 
 - **Reveal on scroll:** `data-reveal="up"` (opacidad 0 y 16px) o `"fade"`, 0.6s con
   `cubic-bezier(0.16, 1, 0.3, 1)`, escalonado con `--reveal-delay`; se dispara al 15% de
-  visibilidad. Requiere `html.js`.
+  visibilidad. Requiere `html.js`. **No se aplica al Hero:** la primera vista se pinta
+  completa desde el inicio (con la aparición, el titular tardaba ~0.8s en verse).
+- **Feedback al pulsar (`.press`):** CTAs, botón CV y tarjetas se escalan a 0.98 mientras se
+  mantienen pulsados (120ms, `cubic-bezier(0.23, 1, 0.32, 1)`). Sustituye al destello gris
+  del navegador móvil, que se desactiva (`-webkit-tap-highlight-color: transparent`).
+- **Menú móvil:** entra en 180ms (fundido y `translateY(-8px)`) y sale en 120ms, solo con CSS
+  (`@starting-style` y `transition-behavior: allow-discrete`). Sin soporte, aparece al instante.
+- La flecha de las tarjetas se desplaza 4px al hover solo con `motion-safe`.
 - Fundido global de 0.25s en color, fondo y borde; scroll suave a anclas.
 - Todo condicionado a `prefers-reduced-motion: no-preference`. Sin JS el contenido es
   visible desde el inicio. Sin levantamientos ni sombras en hover.
+- Qué **no** se anima, a propósito: el subrayado de sección activa (cambia al hacer scroll),
+  Escape y clic fuera del menú (acciones de teclado) y las transiciones entre páginas.
 
 ---
 
@@ -241,6 +253,13 @@ Decidido por mérito, no por precedencia:
   categoría sin redactar: contenido del autor, pendiente.
 - Dos pesos de Fraunces casi iguales (700 y 600) en la primera vista del Hero.
 - Las páginas de caso no marcan sección activa en la navegación.
+- Movimiento: la regla global `*` de transición de color (0.25s) existía para el toggle de
+  tema, hoy oculto, y duplica los `transition-colors`; el reveal usa 600ms y pasos de 90ms
+  (la guía de referencia pide 30–80ms). Sin cambios por ahora.
+- Navegación con etiquetas de ~16–19 caracteres (p. ej. una traducción al alemán) desborda a
+  768px; solo importaría si se añade un idioma.
+- Sin verificar en un dispositivo físico: destello al tocar, color de la barra del navegador
+  y comportamiento en horizontal.
 - Evidencia visual del trabajo (diagramas o capturas) en tarjetas y casos: pendiente, depende
   de qué puede mostrar el autor. Sin métricas inventadas.
 - A 195px de ancho (bajo el mínimo de 320px de WCAG) la página de caso desborda ~44px.
