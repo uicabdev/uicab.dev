@@ -72,3 +72,23 @@
 [data-surface='dark'] :focus-visible {
   outline-color: var(--color-white);
 }
+
+/* Móvil: sin el destello gris/azul del navegador al tocar. El feedback al pulsar lo da
+   la clase .press (más abajo); sin él no quedaría ninguna señal de que el toque se registró. */
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Feedback al pulsar: el elemento "se hunde" un 2% mientras se mantiene el toque o el clic.
+   Mantiene las transiciones de color que tendría el elemento, porque esta regla (sin capa)
+   sustituye a las utilidades transition-*. El movimiento solo con prefers-reduced-motion: no-preference. */
+.press {
+  transition: transform 120ms cubic-bezier(0.23, 1, 0.32, 1), color 150ms ease,
+    background-color 150ms ease, border-color 150ms ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .press:active {
+    transform: scale(0.98);
+  }
+}

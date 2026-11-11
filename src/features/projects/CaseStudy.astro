@@ -54,7 +54,7 @@ const next = all[(all.findIndex(p => p.data.slug === project.data.slug) + 1) % a
     {next && next.data.slug !== project.data.slug && (
       <a
         href={`/${lang}/work/${next.data.slug}/`}
-        class="group block border border-surface-muted bg-surface p-6 transition-colors hover:border-primary"
+        class="press group block border border-surface-muted bg-surface p-6 transition-colors hover:border-primary"
       >
         <span class="text-sm text-text-muted">{t('projects.next')}:</span>
         <span class="mt-1 flex items-center justify-between gap-4 font-heading text-xl font-bold text-primary-dark">
