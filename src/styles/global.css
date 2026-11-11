@@ -18,17 +18,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Theme toggle: cross-fade colors instead of an instant hard cut. Scoped to
-   elements without their own explicit transition (Tailwind's transition-*
-   utilities have higher specificity and keep their own tuned timing). */
-@media (prefers-reduced-motion: no-preference) {
-  *,
-  *::before,
-  *::after {
-    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
-      fill 0.25s ease, stroke 0.25s ease;
-  }
-}
+/* Nota: no hay una regla global `* { transition: ... }`. Existió para el fundido del toggle de
+   tema, pero al no estar en una capa ganaba a las utilidades transition-* de Tailwind (que sí
+   están en @layer) y anulaba, por ejemplo, la transición de transform de las flechas.
+   Cuando se reactive el toggle de tema, añadir el fundido solo mientras dura el cambio. */
 
 /* Smooth anchor-link scrolling (nav, hero scroll hint, in-page CTAs). */
 @media (prefers-reduced-motion: no-preference) {
@@ -42,8 +35,8 @@
    No-JS and prefers-reduced-motion both leave content visible from the start. */
 @media (prefers-reduced-motion: no-preference) {
   html.js [data-reveal] {
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
@@ -71,4 +64,58 @@
 
 [data-surface='dark'] :focus-visible {
   outline-color: var(--color-white);
+}
+
+/* Móvil: sin el destello gris/azul del navegador al tocar. El feedback al pulsar lo da
+   la clase .press (más abajo); sin él no quedaría ninguna señal de que el toque se registró. */
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Feedback al pulsar: el elemento "se hunde" un 2% mientras se mantiene el toque o el clic.
+   Mantiene las transiciones de color que tendría el elemento, porque esta regla (sin capa)
+   sustituye a las utilidades transition-*. El movimiento solo con prefers-reduced-motion: no-preference. */
+.press {
+  transition: transform 120ms cubic-bezier(0.23, 1, 0.32, 1), color 150ms ease,
+    background-color 150ms ease, border-color 150ms ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .press:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Menú móvil: entra con fundido y un leve desplazamiento (180ms) y sale más rápido (120ms).
+   Usa @starting-style y transition-behavior: allow-discrete para animar el paso de
+   display:none a visible sin tocar el JS ni el marcado. En navegadores sin soporte, o con
+   prefers-reduced-motion, aparece y desaparece al instante como antes. */
+@media (prefers-reduced-motion: no-preference) {
+  #mobile-menu {
+    transition: opacity 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 180ms cubic-bezier(0.23, 1, 0.32, 1), display 180ms allow-discrete;
+  }
+
+  #mobile-menu.hidden {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition-duration: 120ms;
+  }
+
+  @starting-style {
+    #mobile-menu:not(.hidden) {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+}
+
+/* Texto largo sin espacios (títulos con palabras largas, URLs, zoom alto): rompe la palabra solo
+   cuando no cabe, en lugar de desbordar la página. No cambia nada mientras el texto quepa. */
+h1,
+h2,
+h3,
+p,
+li {
+  overflow-wrap: anywhere;
 }

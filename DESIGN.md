@@ -77,6 +77,8 @@ blanco.
 - El script inline anti-FOUC de `BaseLayout.astro` se mantiene, pero fuerza `light`
   sin importar `localStorage` ni `prefers-color-scheme` mientras el flag esté apagado.
 - No se definen tokens dark en esta etapa; se definen cuando se reactive.
+- Navegador móvil: `<meta name="theme-color" content="#E6EDE4">` (el tono del header) y
+  `<meta name="color-scheme" content="light">`.
 
 ---
 
@@ -130,6 +132,9 @@ blanco.
   (About) → `primary-dark` (Contact + Footer). Entre secciones del mismo fondo, un
   divisor `surface-muted` de 1px.
 - Zonas táctiles: mínimo 44px en móvil y 24px en escritorio (WCAG 2.2 AA).
+- Sin desborde horizontal desde 195px de ancho (el mínimo de WCAG es 320px): las celdas de la
+  cuadrícula usan `minmax(0, 1fr)` y títulos y párrafos rompen palabras largas solo si no caben
+  (`overflow-wrap: anywhere`). Por debajo de 260px se oculta el enlace "Contacto" del header móvil.
 
 ## Formas y elevación
 
@@ -147,12 +152,12 @@ blanco.
   `md`). Título Fraunces, descripción 14px apagada y, debajo, la primera frase literal de la
   sección "El problema" del caso (tomada del markdown, con su encabezado, limitada a 3
   líneas), y el enlace "Ver caso de estudio →" en `primary` con la flecha que se desplaza
-  4px al hover. Entrada escalonada 90ms. No se escribe texto nuevo para la tarjeta.
+  4px al hover. Entrada escalonada 60ms. No se escribe texto nuevo para la tarjeta.
 - **Etiqueta de estado ("En desarrollo"):** borde 1px `primary`, texto `primary` 12px,
   sin relleno. Es informativa, no clicable.
 - **Navbar:** fija, fondo `surface`, borde inferior `surface-muted`. Enlaces en 14px
   `text-muted`, hover `primary-dark`; la sección visible (vía `IntersectionObserver` y
-  `aria-current`) va en `primary-dark` con subrayado. Móvil: menú que se cierra con Escape
+  `aria-current`) va en `primary-dark` con subrayado. En las páginas de caso, "Trabajo" queda marcado de forma fija. Móvil: menú que se cierra con Escape
   (devuelve el foco al botón), al tocar fuera o al pulsar un enlace. En móvil, un enlace
   "Contacto" visible junto al hamburguesa evita tener que abrir el menú. Selector de
   idioma `ES | EN` en escritorio, con el idioma actual en `primary-dark` y sin enlace; el
@@ -166,16 +171,26 @@ blanco.
 - **Página de caso:** columna de 768px, enlace de regreso, h1, descripción y cuerpo del
   markdown (secciones en h2 Fraunces 1.25rem, párrafos en `primary-dark`). Al final: tarjeta
   "Siguiente proyecto" (por orden; el último vuelve al primero) y la misma banda oscura de
-  Contact de la home, para que el cierre conserve su peso.
+  Contact de la home, para que el cierre conserve su peso. Los párrafos del cuerpo rompen
+  URLs largas (`overflow-wrap: anywhere`) para no desbordar en móvil.
 
 ## Movimiento
 
-- **Reveal on scroll:** `data-reveal="up"` (opacidad 0 y 16px) o `"fade"`, 0.6s con
+- **Reveal on scroll:** `data-reveal="up"` (opacidad 0 y 16px) o `"fade"`, 0.45s con
   `cubic-bezier(0.16, 1, 0.3, 1)`, escalonado con `--reveal-delay`; se dispara al 15% de
-  visibilidad. Requiere `html.js`.
-- Fundido global de 0.25s en color, fondo y borde; scroll suave a anclas.
+  visibilidad. Requiere `html.js`. **No se aplica al Hero:** la primera vista se pinta
+  completa desde el inicio (con la aparición, el titular tardaba ~0.8s en verse).
+- **Feedback al pulsar (`.press`):** CTAs, botón CV y tarjetas se escalan a 0.98 mientras se
+  mantienen pulsados (120ms, `cubic-bezier(0.23, 1, 0.32, 1)`). Sustituye al destello gris
+  del navegador móvil, que se desactiva (`-webkit-tap-highlight-color: transparent`).
+- **Menú móvil:** entra en 180ms (fundido y `translateY(-8px)`) y sale en 120ms, solo con CSS
+  (`@starting-style` y `transition-behavior: allow-discrete`). Sin soporte, aparece al instante.
+- La flecha de las tarjetas se desplaza 4px al hover solo con `motion-safe`.
+- Transiciones de color de 150ms (`transition-colors`) en elementos interactivos; scroll suave a anclas. No hay una regla global `* { transition }`: al no estar en una capa anularía las utilidades de Tailwind. Si se reactiva el toggle de tema, añadir el fundido solo durante el cambio.
 - Todo condicionado a `prefers-reduced-motion: no-preference`. Sin JS el contenido es
   visible desde el inicio. Sin levantamientos ni sombras en hover.
+- Qué **no** se anima, a propósito: el subrayado de sección activa (cambia al hacer scroll),
+  Escape y clic fuera del menú (acciones de teclado) y las transiciones entre páginas.
 
 ---
 
@@ -235,15 +250,15 @@ Decidido por mérito, no por precedencia:
 - Marcado duplicado de enlaces de navegación y toggle entre escritorio y móvil.
 - Los botones del Hero repiten clases en línea en lugar de ser un componente.
 - Valores sueltos fuera de escala: `text-[0.8125rem]`, `z-[100]`.
-- Palabras largas sin espacios desbordan en títulos (no ocurre con el contenido actual);
-  el Hero desborda ~80px a 195px de ancho, por debajo del mínimo de 320px de WCAG.
 - Títulos de Approach en inglés dentro de la página en español y "líneas de criterio" por
   categoría sin redactar: contenido del autor, pendiente.
 - Dos pesos de Fraunces casi iguales (700 y 600) en la primera vista del Hero.
-- Las páginas de caso no marcan sección activa en la navegación.
+- Navegación con etiquetas de ~16–19 caracteres (p. ej. una traducción al alemán) desborda a
+  768px; solo importaría si se añade un idioma.
+- Sin verificar en un dispositivo físico: destello al tocar, color de la barra del navegador
+  y comportamiento en horizontal.
 - Evidencia visual del trabajo (diagramas o capturas) en tarjetas y casos: pendiente, depende
   de qué puede mostrar el autor. Sin métricas inventadas.
-- A 195px de ancho (bajo el mínimo de 320px de WCAG) la página de caso desborda ~44px.
 - `BlogLayout` es un envoltorio sin uso hasta la Fase 3.
 
 ---
