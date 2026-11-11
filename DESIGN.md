@@ -180,11 +180,19 @@ blanco.
   `cubic-bezier(0.16, 1, 0.3, 1)`, escalonado con `--reveal-delay`; se dispara al 15% de
   visibilidad. Requiere `html.js`. **No se aplica al Hero:** la primera vista se pinta
   completa desde el inicio (con la aparición, el titular tardaba ~0.8s en verse).
+  **Respaldo:** si el script de revelado no llega a ejecutarse (p. ej. `IntersectionObserver`
+  ausente o un error), pasados 4s se quita la clase `js` y el contenido se muestra; el script
+  marca `data-reveal-ready` en `<html>` para evitarlo. Sin este respaldo, producción dejaba los
+  9 bloques invisibles para siempre.
 - **Feedback al pulsar (`.press`):** CTAs, botón CV y tarjetas se escalan a 0.98 mientras se
   mantienen pulsados (120ms, `cubic-bezier(0.23, 1, 0.32, 1)`). Sustituye al destello gris
-  del navegador móvil, que se desactiva (`-webkit-tap-highlight-color: transparent`).
+  del navegador móvil, que se desactiva (`-webkit-tap-highlight-color: transparent`). La regla
+  está en `@layer components`: **no poner `transition-*` en un elemento con `.press`**, porque
+  las utilidades de Tailwind la sobrescribirían y apagarían la transición de `transform`.
 - **Menú móvil:** entra en 180ms (fundido y `translateY(-8px)`) y sale en 120ms, solo con CSS
   (`@starting-style` y `transition-behavior: allow-discrete`). Sin soporte, aparece al instante.
+  **Las acciones de teclado (Enter, Espacio, Escape) son instantáneas**: el script apaga la
+  transición con `data-instant` solo durante ese cambio; el clic y el toque siguen animando.
 - La flecha de las tarjetas se desplaza 4px al hover solo con `motion-safe`.
 - Transiciones de color de 150ms (`transition-colors`) en elementos interactivos; scroll suave a anclas. No hay una regla global `* { transition }`: al no estar en una capa anularía las utilidades de Tailwind. Si se reactiva el toggle de tema, añadir el fundido solo durante el cambio.
 - Todo condicionado a `prefers-reduced-motion: no-preference`. Sin JS el contenido es
@@ -257,6 +265,11 @@ Decidido por mérito, no por precedencia:
   768px; solo importaría si se añade un idioma.
 - Sin verificar en un dispositivo físico: destello al tocar, color de la barra del navegador
   y comportamiento en horizontal.
+- Movimiento, pendiente de decisión del autor (revisión con `review-animations`): el halo
+  `animate-ping` del punto "Disponible" es infinito (1s) y es la única animación sin fin;
+  `scroll-behavior: smooth` tarda 700–933ms por clic de navegación y también anima los saltos por
+  teclado; la flecha de las tarjetas usa la curva integrada de Tailwind en vez de
+  `cubic-bezier(0.23, 1, 0.32, 1)`.
 - Evidencia visual del trabajo (diagramas o capturas) en tarjetas y casos: pendiente, depende
   de qué puede mostrar el autor. Sin métricas inventadas.
 - `BlogLayout` es un envoltorio sin uso hasta la Fase 3.
