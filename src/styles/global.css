@@ -73,16 +73,19 @@ html {
 }
 
 /* Feedback al pulsar: el elemento "se hunde" un 2% mientras se mantiene el toque o el clic.
-   Mantiene las transiciones de color que tendría el elemento, porque esta regla (sin capa)
-   sustituye a las utilidades transition-*. El movimiento solo con prefers-reduced-motion: no-preference. */
-.press {
-  transition: transform 120ms cubic-bezier(0.23, 1, 0.32, 1), color 150ms ease,
-    background-color 150ms ease, border-color 150ms ease;
-}
+   Incluye las transiciones de color del elemento. Está en @layer components: las utilidades de
+   Tailwind pueden sobrescribirla a propósito, así que NO poner transition-* en un elemento con
+   .press (apagaría la transición de transform). El movimiento solo con prefers-reduced-motion. */
+@layer components {
+  .press {
+    transition: transform 120ms cubic-bezier(0.23, 1, 0.32, 1), color 150ms ease,
+      background-color 150ms ease, border-color 150ms ease;
+  }
 
-@media (prefers-reduced-motion: no-preference) {
-  .press:active {
-    transform: scale(0.98);
+  @media (prefers-reduced-motion: no-preference) {
+    .press:active {
+      transform: scale(0.98);
+    }
   }
 }
 
@@ -100,6 +103,11 @@ html {
     opacity: 0;
     transform: translateY(-8px);
     transition-duration: 120ms;
+  }
+
+  /* Cambios iniciados por teclado (Enter, Espacio, Escape): sin transición. Ver el script del Navbar. */
+  #mobile-menu[data-instant] {
+    transition: none;
   }
 
   @starting-style {
