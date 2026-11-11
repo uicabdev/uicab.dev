@@ -141,7 +141,7 @@ un ancla (el siguiente Tab continúa desde ahí); al no ser controles, no dibuja
 - Zonas táctiles: mínimo 44px en móvil y 24px en escritorio (WCAG 2.2 AA).
 - Sin desborde horizontal desde 195px de ancho (el mínimo de WCAG es 320px): las celdas de la
   cuadrícula usan `minmax(0, 1fr)` y títulos y párrafos rompen palabras largas solo si no caben
-  (`overflow-wrap: anywhere`). Por debajo de 260px se oculta el enlace "Contacto" del header móvil.
+  (`overflow-wrap: anywhere`). Por debajo de 280px se oculta el enlace "Contacto" del header móvil (con el logo de 20px, a menos ancho quedaría pegado a él).
 
 ## Formas y elevación
 
@@ -162,7 +162,9 @@ un ancla (el siguiente Tab continúa desde ahí); al no ser controles, no dibuja
   4px al hover. Entrada escalonada 60ms. No se escribe texto nuevo para la tarjeta.
 - **Etiqueta de estado ("En desarrollo"):** borde 1px `primary`, texto `primary` 12px,
   sin relleno. Es informativa, no clicable.
-- **Navbar:** fija, fondo `surface`, borde inferior `surface-muted`. Enlaces en 14px
+- **Navbar:** fija, fondo `surface`, borde inferior `surface-muted`. Logo `uicab.dev` en
+  Newsreader 700 a 20px y espaciado normal (con la fuente anterior iba a 18px y `tracking-tight`;
+  en Newsreader, más estrecha, eso lo dejaba pequeño y apretado). Enlaces en 14px
   `text-muted`, hover `primary-dark`; la sección visible (vía `IntersectionObserver` y
   `aria-current`) va en `primary-dark` con subrayado. En las páginas de caso, "Trabajo" queda marcado de forma fija. Móvil: menú que se cierra con Escape
   (devuelve el foco al botón), al tocar fuera o al pulsar un enlace. En móvil, un enlace
