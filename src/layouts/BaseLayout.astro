@@ -2,11 +2,12 @@
 import '../styles/global.css';
 import { THEME_TOGGLE_ENABLED } from '../consts';
 import SEO from '../components/common/SEO.astro';
+import type { Lang } from '../i18n/ui';
 
 interface Props {
   title?: string;
   description?: string;
-  lang?: string;
+  lang?: Lang;
 }
 
 const { title, description, lang = 'es' } = Astro.props;
