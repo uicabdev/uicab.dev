@@ -92,3 +92,27 @@ html {
     transform: scale(0.98);
   }
 }
+
+/* Menú móvil: entra con fundido y un leve desplazamiento (180ms) y sale más rápido (120ms).
+   Usa @starting-style y transition-behavior: allow-discrete para animar el paso de
+   display:none a visible sin tocar el JS ni el marcado. En navegadores sin soporte, o con
+   prefers-reduced-motion, aparece y desaparece al instante como antes. */
+@media (prefers-reduced-motion: no-preference) {
+  #mobile-menu {
+    transition: opacity 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 180ms cubic-bezier(0.23, 1, 0.32, 1), display 180ms allow-discrete;
+  }
+
+  #mobile-menu.hidden {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition-duration: 120ms;
+  }
+
+  @starting-style {
+    #mobile-menu:not(.hidden) {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+}
