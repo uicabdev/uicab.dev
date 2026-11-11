@@ -1,5 +1,6 @@
 {
   "enabledPlugins": {
-    "impeccable@impeccable": true
+    "impeccable@impeccable": true,
+    "modern-web-guidance@googlechrome": true
   }
 }
