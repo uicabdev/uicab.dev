@@ -153,3 +153,10 @@ p,
 li {
   text-wrap: pretty;
 }
+
+/* Las secciones llevan tabindex="-1" para que reciban el foco al llegar por un ancla (así un
+   usuario de teclado continúa desde ahí). No son controles: no deben dibujar el anillo de foco. */
+section[tabindex='-1']:focus,
+section[tabindex='-1']:focus-visible {
+  outline: none;
+}
