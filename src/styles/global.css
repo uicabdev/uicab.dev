@@ -127,3 +127,12 @@ p,
 li {
   overflow-wrap: anywhere;
 }
+
+/* Halo del punto "Disponible": 3 iteraciones (~3s) y reposo. Un movimiento que arranca solo y dura
+   más de 5s necesita un control para pausarlo (WCAG 2.2.2, nivel A); prefers-reduced-motion no lo
+   sustituye. Va sin capa para ganar al `animation` de la utilidad animate-ping, que fija `infinite`. */
+@media (prefers-reduced-motion: no-preference) {
+  .ping-limited {
+    animation-iteration-count: 3;
+  }
+}
