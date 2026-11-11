@@ -30,6 +30,14 @@ const { title, description, lang = 'es' } = Astro.props;
     <script is:inline define:vars={{ allowDark: THEME_TOGGLE_ENABLED }}>
       (function () {
         document.documentElement.classList.add('js');
+        // Respaldo del reveal: si el script que revela los bloques no llega a ejecutarse (fallo de
+        // red, error), el CSS dejaría invisibles las secciones bajo el pliegue. Pasados 4s sin que
+        // marque data-reveal-ready, se retira la clase js y el contenido se muestra tal cual.
+        setTimeout(function () {
+          if (!document.documentElement.hasAttribute('data-reveal-ready')) {
+            document.documentElement.classList.remove('js');
+          }
+        }, 4000);
         try {
           const stored = localStorage.getItem('theme');
           const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -61,6 +69,8 @@ const { title, description, lang = 'es' } = Astro.props;
         { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
       );
       document.querySelectorAll('[data-reveal]').forEach((el) => revealed.observe(el));
+      // Avisa al respaldo del <head> de que el reveal funciona (ver el script inline).
+      document.documentElement.setAttribute('data-reveal-ready', '');
     </script>
   </body>
 </html>
