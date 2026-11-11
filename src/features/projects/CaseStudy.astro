@@ -1,6 +1,5 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
-import SocialLinks from '../../components/common/SocialLinks.astro';
 import { useTranslations } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -51,7 +50,7 @@ const next = all[(all.findIndex(p => p.data.slug === project.data.slug) + 1) % a
     <Content />
   </div>
 
-  <footer class="mt-16 flex flex-col gap-8 border-t border-surface-muted pt-10">
+  <footer class="mt-16 border-t border-surface-muted pt-10">
     {next && next.data.slug !== project.data.slug && (
       <a
         href={`/${lang}/work/${next.data.slug}/`}
@@ -64,12 +63,5 @@ const next = all[(all.findIndex(p => p.data.slug === project.data.slug) + 1) % a
         </span>
       </a>
     )}
-    <a
-      href={`/${lang}/#contact`}
-      class="block min-h-11 py-1 font-heading text-2xl font-bold text-primary-dark transition-colors hover:text-primary"
-    >
-      {t('contact.title')} <span aria-hidden="true" class="ml-2">→</span>
-    </a>
-    <SocialLinks lang={lang} />
   </footer>
 </article>
