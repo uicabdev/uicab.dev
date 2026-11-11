@@ -16,7 +16,7 @@ const href = `/${lang}/work/${project.data.slug}/`;
 // Extracto literal del caso: primera frase de la primera sección ("El problema" / "The problem").
 // El texto y su encabezado salen del markdown tal cual; no se reescribe nada.
 const clean = (s: string) => s.replace(/[*_`]/g, '').trim();
-const [, heading, ...rest] = (project.body ?? '').split(/^### (.+)$/m);
+const [, heading, ...rest] = (project.body ?? '').split(/^#{2,3} (.+)$/m);
 const firstParagraph = clean((rest[0] ?? '').trim().split(/\n\s*\n/)[0] ?? '');
 const excerpt = (firstParagraph.match(/^.*?[.!?](?=\s|$)/s)?.[0] ?? firstParagraph).trim();
 ---

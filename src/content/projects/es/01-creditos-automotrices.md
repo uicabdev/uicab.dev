@@ -6,11 +6,11 @@ order: 1
 status: done
 ---
 
-### El problema
+## El problema
 
 Una empresa automotriz gestionaba sus líneas de crédito para agencias de forma manual y fragmentada. El proceso involucraba múltiples actores — operadores, representantes legales, asesores, administrativos y validadores — sin un sistema centralizado que controlara los estados, validara las reglas de negocio ni garantizara la trazabilidad del proceso completo.
 
-### Lo que construí
+## Lo que construí
 
 Desarrollé el frontend de un sistema integral de gestión de créditos que unifica todo el flujo — desde la requisición inicial hasta la firma digital del contrato. Cuatro decisiones técnicas definieron el proyecto:
 
@@ -22,6 +22,6 @@ Desarrollé el frontend de un sistema integral de gestión de créditos que unif
 
 *Integración con CRM* — El sistema está conectado en todo momento al CRM de la empresa, sincronizando información de agencias, líneas de crédito y estados de las solicitudes.
 
-### El resultado
+## El resultado
 
 Un proceso que antes era manual, propenso a errores y sin trazabilidad, se convirtió en un flujo digital controlado de extremo a extremo — con validaciones automáticas, auditoría de estados y firma legal integrada.
