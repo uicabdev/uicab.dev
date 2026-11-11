@@ -149,7 +149,7 @@ blanco.
   `md`). Título Fraunces, descripción 14px apagada y, debajo, la primera frase literal de la
   sección "El problema" del caso (tomada del markdown, con su encabezado, limitada a 3
   líneas), y el enlace "Ver caso de estudio →" en `primary` con la flecha que se desplaza
-  4px al hover. Entrada escalonada 90ms. No se escribe texto nuevo para la tarjeta.
+  4px al hover. Entrada escalonada 60ms. No se escribe texto nuevo para la tarjeta.
 - **Etiqueta de estado ("En desarrollo"):** borde 1px `primary`, texto `primary` 12px,
   sin relleno. Es informativa, no clicable.
 - **Navbar:** fija, fondo `surface`, borde inferior `surface-muted`. Enlaces en 14px
@@ -173,7 +173,7 @@ blanco.
 
 ## Movimiento
 
-- **Reveal on scroll:** `data-reveal="up"` (opacidad 0 y 16px) o `"fade"`, 0.6s con
+- **Reveal on scroll:** `data-reveal="up"` (opacidad 0 y 16px) o `"fade"`, 0.45s con
   `cubic-bezier(0.16, 1, 0.3, 1)`, escalonado con `--reveal-delay`; se dispara al 15% de
   visibilidad. Requiere `html.js`. **No se aplica al Hero:** la primera vista se pinta
   completa desde el inicio (con la aparición, el titular tardaba ~0.8s en verse).
@@ -183,7 +183,7 @@ blanco.
 - **Menú móvil:** entra en 180ms (fundido y `translateY(-8px)`) y sale en 120ms, solo con CSS
   (`@starting-style` y `transition-behavior: allow-discrete`). Sin soporte, aparece al instante.
 - La flecha de las tarjetas se desplaza 4px al hover solo con `motion-safe`.
-- Fundido global de 0.25s en color, fondo y borde; scroll suave a anclas.
+- Transiciones de color de 150ms (`transition-colors`) en elementos interactivos; scroll suave a anclas. No hay una regla global `* { transition }`: al no estar en una capa anularía las utilidades de Tailwind. Si se reactiva el toggle de tema, añadir el fundido solo durante el cambio.
 - Todo condicionado a `prefers-reduced-motion: no-preference`. Sin JS el contenido es
   visible desde el inicio. Sin levantamientos ni sombras en hover.
 - Qué **no** se anima, a propósito: el subrayado de sección activa (cambia al hacer scroll),
@@ -253,9 +253,6 @@ Decidido por mérito, no por precedencia:
   categoría sin redactar: contenido del autor, pendiente.
 - Dos pesos de Fraunces casi iguales (700 y 600) en la primera vista del Hero.
 - Las páginas de caso no marcan sección activa en la navegación.
-- Movimiento: la regla global `*` de transición de color (0.25s) existía para el toggle de
-  tema, hoy oculto, y duplica los `transition-colors`; el reveal usa 600ms y pasos de 90ms
-  (la guía de referencia pide 30–80ms). Sin cambios por ahora.
 - Navegación con etiquetas de ~16–19 caracteres (p. ej. una traducción al alemán) desborda a
   768px; solo importaría si se añade un idioma.
 - Sin verificar en un dispositivo físico: destello al tocar, color de la barra del navegador
