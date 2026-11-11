@@ -59,7 +59,7 @@ const next = all[(all.findIndex(p => p.data.slug === project.data.slug) + 1) % a
         <span class="text-sm text-text-muted">{t('projects.next')}:</span>
         <span class="mt-1 flex items-center justify-between gap-4 font-heading text-xl font-bold text-primary-dark">
           {next.data.title}
-          <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+          <span aria-hidden="true" class="transition-transform duration-200 motion-safe:group-hover:translate-x-1">→</span>
         </span>
       </a>
     )}

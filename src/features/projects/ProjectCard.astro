@@ -47,7 +47,7 @@ const excerpt = (firstParagraph.match(/^.*?[.!?](?=\s|$)/s)?.[0] ?? firstParagra
     )}
     <span class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors group-hover:text-primary-dark">
       {t('projects.readmore')}
-      <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+      <span aria-hidden="true" class="transition-transform duration-200 motion-safe:group-hover:translate-x-1">→</span>
     </span>
   </a>
 </article>
