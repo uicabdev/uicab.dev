@@ -42,14 +42,14 @@ const navLinks = [
       <a
         href={altHref}
         class="px-1 py-1.5 text-text-muted hover:text-primary transition-colors text-xs font-medium uppercase tracking-wide"
-        aria-label={altLang === 'en' ? 'Switch to English' : 'Cambiar a Español'}
+        aria-label={t('nav.lang.switch')}
       >
         {altLang}
       </a>
       {THEME_TOGGLE_ENABLED && (<button
         data-theme-toggle
         class="text-text-muted hover:text-primary-dark transition-colors w-5 h-5 flex items-center justify-center"
-        aria-label={lang === 'es' ? 'Cambiar tema' : 'Toggle theme'}
+        aria-label={t('nav.theme.toggle')}
       >
         <!-- Sun: visible in dark mode to switch to light -->
         <svg class="hidden dark:block" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -83,7 +83,7 @@ const navLinks = [
       {THEME_TOGGLE_ENABLED && (<button
         data-theme-toggle
         class="text-text-muted hover:text-primary-dark transition-colors w-11 h-11 flex items-center justify-center"
-        aria-label={lang === 'es' ? 'Cambiar tema' : 'Toggle theme'}
+        aria-label={t('nav.theme.toggle')}
       >
         <svg class="hidden dark:block" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="5"/>
@@ -105,7 +105,7 @@ const navLinks = [
         class="text-text-muted hover:text-primary-dark transition-colors w-11 h-11 flex items-center justify-center"
         aria-expanded="false"
         aria-controls="mobile-menu"
-        aria-label={lang === 'es' ? 'Abrir menú' : 'Open menu'}
+        aria-label={t('nav.menu.open')}
       >
         <svg id="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6"/>

@@ -1,11 +1,15 @@
 ---
 import { SOCIAL, CV_PATH } from '../../consts';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
 
 interface Props {
   tone?: 'default' | 'inverse';
+  lang?: Lang;
 }
 
-const { tone = 'default' } = Astro.props;
+const { tone = 'default', lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
 const linkClass =
   tone === 'inverse'
     ? 'inline-flex min-h-11 items-center text-surface hover:text-white transition-colors text-sm'
@@ -36,7 +40,7 @@ const linkClass =
     target="_blank"
     rel="noopener noreferrer"
     class={linkClass}
-    aria-label="Descargar CV"
+    aria-label={t('social.cv.download')}
   >
     CV ↓
   </a>
