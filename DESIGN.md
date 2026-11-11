@@ -157,7 +157,7 @@ blanco.
   sin relleno. Es informativa, no clicable.
 - **Navbar:** fija, fondo `surface`, borde inferior `surface-muted`. Enlaces en 14px
   `text-muted`, hover `primary-dark`; la sección visible (vía `IntersectionObserver` y
-  `aria-current`) va en `primary-dark` con subrayado. Móvil: menú que se cierra con Escape
+  `aria-current`) va en `primary-dark` con subrayado. En las páginas de caso, "Trabajo" queda marcado de forma fija. Móvil: menú que se cierra con Escape
   (devuelve el foco al botón), al tocar fuera o al pulsar un enlace. En móvil, un enlace
   "Contacto" visible junto al hamburguesa evita tener que abrir el menú. Selector de
   idioma `ES | EN` en escritorio, con el idioma actual en `primary-dark` y sin enlace; el
@@ -253,7 +253,6 @@ Decidido por mérito, no por precedencia:
 - Títulos de Approach en inglés dentro de la página en español y "líneas de criterio" por
   categoría sin redactar: contenido del autor, pendiente.
 - Dos pesos de Fraunces casi iguales (700 y 600) en la primera vista del Hero.
-- Las páginas de caso no marcan sección activa en la navegación.
 - Navegación con etiquetas de ~16–19 caracteres (p. ej. una traducción al alemán) desborda a
   768px; solo importaría si se añade un idioma.
 - Sin verificar en un dispositivo físico: destello al tocar, color de la barra del navegador
