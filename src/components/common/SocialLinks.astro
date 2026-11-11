@@ -1,13 +1,27 @@
 ---
 import { SOCIAL, CV_PATH } from '../../consts';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  tone?: 'default' | 'inverse';
+  lang?: Lang;
+}
+
+const { tone = 'default', lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+const linkClass =
+  tone === 'inverse'
+    ? 'inline-flex min-h-11 items-center text-surface hover:text-white transition-colors text-sm'
+    : 'inline-flex min-h-11 items-center text-text-muted hover:text-primary-dark transition-colors text-sm';
 ---
 
-<div class="flex items-center gap-4">
+<div class="flex flex-wrap items-center gap-x-4">
   <a
     href={SOCIAL.github}
     target="_blank"
     rel="noopener noreferrer"
-    class="text-text-secondary hover:text-text-primary transition-colors text-sm"
+    class={linkClass}
     aria-label="GitHub"
   >
     GitHub
@@ -16,7 +30,7 @@ import { SOCIAL, CV_PATH } from '../../consts';
     href={SOCIAL.linkedin}
     target="_blank"
     rel="noopener noreferrer"
-    class="text-text-secondary hover:text-text-primary transition-colors text-sm"
+    class={linkClass}
     aria-label="LinkedIn"
   >
     LinkedIn
@@ -25,8 +39,8 @@ import { SOCIAL, CV_PATH } from '../../consts';
     href={CV_PATH}
     target="_blank"
     rel="noopener noreferrer"
-    class="text-text-secondary hover:text-text-primary transition-colors text-sm"
-    aria-label="Descargar CV"
+    class={linkClass}
+    aria-label={t('social.cv.download')}
   >
     CV ↓
   </a>

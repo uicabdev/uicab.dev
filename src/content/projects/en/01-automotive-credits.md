@@ -1,15 +1,16 @@
 ---
 title: Automotive credit management system
 description: Comprehensive automotive credit management platform with multi-actor workflows and digital signing.
+slug: automotive-credits
 order: 1
 status: done
 ---
 
-### The problem
+## The problem
 
 An automotive company managed its credit lines for dealerships manually and in a fragmented way. The process involved multiple actors — operators, legal representatives, advisors, administrators and validators — with no centralized system to control states, validate business rules, or guarantee traceability throughout the complete process.
 
-### What I built
+## What I built
 
 I developed the frontend of a comprehensive credit management system that unifies the entire workflow — from the initial requisition to the digital signing of the contract. Four technical decisions defined the project:
 
@@ -21,6 +22,6 @@ I developed the frontend of a comprehensive credit management system that unifie
 
 *CRM integration* — The system is connected at all times to the company's CRM, synchronizing information about dealerships, credit lines and requisition states.
 
-### The result
+## The result
 
 A process that was previously manual, error-prone and untraceable became an end-to-end controlled digital workflow — with automatic validations, state auditing and integrated legal signing.

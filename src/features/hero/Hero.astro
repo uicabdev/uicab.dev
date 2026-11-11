@@ -11,14 +11,17 @@ interface Props {
 const { lang = 'es' } = Astro.props;
 const t = useTranslations(lang);
 
+// Tipografía: comillas rectas -> curvas al renderizar. El texto fuente de la cita no se modifica.
+const smartQuotes = (s: string) => s.replace(/^"/, '“').replace(/"$/, '”').replace(/'/g, '’');
+
 const quote = {
   es: '"El código es la última parte. No empiezo a escribir hasta entender qué problema estoy resolviendo — eso es lo que me permite construir productos de principio a fin."',
   en: '"Code is the last step. I don\'t start writing until I understand what problem I\'m solving — that\'s what allows me to build products from idea to launch."',
 };
 ---
 
-<section id="hero" class="flex min-h-[calc(100vh-4.5rem)] items-center">
-  <div class="mx-auto w-full max-w-5xl px-6 py-20">
+<section id="hero">
+  <div class="mx-auto w-full max-w-5xl px-6 pb-12 pt-16 md:pb-16 md:pt-24">
     <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
 
       <!-- Texto -->
@@ -31,18 +34,18 @@ const quote = {
           class="flex w-fit items-center gap-2.5"
         >
           <span class="relative flex h-2 w-2">
-            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60"></span>
-            <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+            <span class="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-primary opacity-60"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
           </span>
-          <span class="text-sm text-text-secondary">{t('hero.availability')}</span>
+          <span class="text-sm text-text-muted">{t('hero.availability')}</span>
         </div>
 
         <!-- Nombre + rol -->
         <div data-reveal="up" style="--reveal-delay: 80ms" class="flex flex-col gap-1">
-          <h1 class="font-heading text-4xl font-bold leading-tight text-text-primary md:text-5xl">
+          <h1 class="font-heading text-4xl font-bold leading-tight text-primary-dark md:text-5xl">
             Manuel Uicab
           </h1>
-          <p class="font-heading text-xl font-medium text-text-secondary">
+          <p class="text-base font-medium text-text-muted">
             Frontend Developer
           </p>
         </div>
@@ -51,22 +54,22 @@ const quote = {
         <blockquote
           data-reveal="up"
           style="--reveal-delay: 160ms"
-          class="border-l-2 border-accent pl-5 font-heading text-lg leading-relaxed text-text-secondary"
+          class="font-heading text-2xl font-semibold leading-snug text-balance text-primary-dark"
         >
-          {quote[lang]}
+          {smartQuotes(quote[lang])}
         </blockquote>
 
         <!-- CTAs -->
         <div data-reveal="up" style="--reveal-delay: 240ms" class="flex flex-wrap gap-3">
           <a
             href={`/${lang}/#projects`}
-            class="inline-flex items-center bg-accent px-5 py-2.5 text-sm font-medium text-bg-base transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-accent-hover"
+            class="inline-flex items-center bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-primary-dark"
           >
             {t('hero.cta.primary')}
           </a>
           <a
             href={`/${lang}/#contact`}
-            class="inline-flex items-center border border-border px-5 py-2.5 text-sm font-medium text-text-primary transition-[color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+            class="inline-flex items-center border border-primary px-5 py-2.5 text-sm font-medium text-primary-dark transition-colors duration-200 hover:bg-surface"
           >
             {t('hero.cta.secondary')}
           </a>
@@ -74,7 +77,7 @@ const quote = {
 
         <!-- Social links -->
         <div data-reveal="fade" style="--reveal-delay: 320ms">
-          <SocialLinks />
+          <SocialLinks lang={lang} />
         </div>
       </div>
 
@@ -83,7 +86,7 @@ const quote = {
         <div
           data-reveal="fade"
           style="--reveal-delay: 120ms"
-          class="h-56 w-56 overflow-hidden md:h-72 md:w-72 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]"
+          class="h-56 w-56 max-w-full overflow-hidden md:h-72 md:w-72"
         >
           <picture>
             <source srcset={HERO_IMAGE_WEBP} type="image/webp" />
@@ -98,30 +101,6 @@ const quote = {
         </div>
       </div>
 
-    </div>
-
-    <!-- Scroll hint -->
-    <div class="mt-20 flex justify-center">
-      <a
-        href={`/${lang}/#about`}
-        aria-label={t('hero.scroll')}
-        class="scroll-hint text-text-secondary transition-colors hover:text-accent"
-      >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <polyline points="19 12 12 19 5 12" />
-        </svg>
-      </a>
     </div>
   </div>
 </section>
