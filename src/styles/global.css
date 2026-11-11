@@ -109,3 +109,13 @@ html {
     }
   }
 }
+
+/* Texto largo sin espacios (títulos con palabras largas, URLs, zoom alto): rompe la palabra solo
+   cuando no cabe, en lugar de desbordar la página. No cambia nada mientras el texto quepa. */
+h1,
+h2,
+h3,
+p,
+li {
+  overflow-wrap: anywhere;
+}
