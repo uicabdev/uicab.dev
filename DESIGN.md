@@ -250,6 +250,6 @@ Decidido por mérito, no por precedencia:
 
 ## Uso de skills de diseño
 
-`impeccable`, `design-taste-frontend` y las skills de animación sugieren estilo propio.
+`impeccable` y las skills de animación sugieren estilo propio.
 Al invocarlas: respetar este archivo (paleta, fuentes, principios) y limitar sus
 propuestas a layout, jerarquía, espaciado, accesibilidad y movimiento.
