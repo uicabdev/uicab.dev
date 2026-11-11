@@ -96,7 +96,10 @@ html {
 @media (prefers-reduced-motion: no-preference) {
   #mobile-menu {
     transition: opacity 180ms cubic-bezier(0.23, 1, 0.32, 1),
-      transform 180ms cubic-bezier(0.23, 1, 0.32, 1), display 180ms allow-discrete;
+      transform 180ms cubic-bezier(0.23, 1, 0.32, 1), display 180ms;
+    /* Aparte del shorthand: un navegador que no entienda allow-discrete descartaría toda la
+       declaración transition si fuera dentro de ella (guía animate-element-entry-exit). */
+    transition-behavior: allow-discrete;
   }
 
   #mobile-menu.hidden {
@@ -126,4 +129,34 @@ h3,
 p,
 li {
   overflow-wrap: anywhere;
+}
+
+/* Halo del punto "Disponible": 3 iteraciones (~3s) y reposo. Un movimiento que arranca solo y dura
+   más de 5s necesita un control para pausarlo (WCAG 2.2.2, nivel A); prefers-reduced-motion no lo
+   sustituye. Va sin capa para ganar al `animation` de la utilidad animate-ping, que fija `infinite`. */
+@media (prefers-reduced-motion: no-preference) {
+  .ping-limited {
+    animation-iteration-count: 3;
+  }
+}
+
+/* Líneas de texto: títulos equilibrados y párrafos sin palabras sueltas al final. Es una mejora
+   progresiva (si el navegador no lo soporta, el texto se ajusta como siempre). balance es costoso,
+   así que solo en títulos cortos; pretty es de coste medio y solo en bloques de texto. */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+/* Las secciones llevan tabindex="-1" para que reciban el foco al llegar por un ancla (así un
+   usuario de teclado continúa desde ahí). No son controles: no deben dibujar el anillo de foco. */
+section[tabindex='-1']:focus,
+section[tabindex='-1']:focus-visible {
+  outline: none;
 }
