@@ -39,13 +39,24 @@ const navLinks = [
           {link.label}
         </a>
       ))}
-      <a
-        href={altHref}
-        class="px-1 py-1.5 text-text-muted hover:text-primary transition-colors text-xs font-medium uppercase tracking-wide"
-        aria-label={t('nav.lang.switch')}
-      >
-        {altLang}
-      </a>
+      <div class="flex items-center text-xs font-medium uppercase tracking-wide">
+        {(['es', 'en'] as const).map((code, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true" class="text-surface-muted">|</span>}
+            {code === lang ? (
+              <span aria-current="true" class="px-2 py-1.5 text-primary-dark">{code}</span>
+            ) : (
+              <a
+                href={altHref}
+                class="px-2 py-1.5 text-text-muted hover:text-primary transition-colors"
+                aria-label={t('nav.lang.switch')}
+              >
+                {code}
+              </a>
+            )}
+          </>
+        ))}
+      </div>
       {THEME_TOGGLE_ENABLED && (<button
         data-theme-toggle
         class="text-text-muted hover:text-primary-dark transition-colors w-5 h-5 flex items-center justify-center"
