@@ -194,36 +194,54 @@ const navLinks = [
   const iconOpen = document.getElementById('icon-open');
   const iconClose = document.getElementById('icon-close');
 
-  function openMenu() {
-    mobileMenu?.classList.remove('hidden');
-    mobileMenu?.setAttribute('aria-hidden', 'false');
-    menuBtn?.setAttribute('aria-expanded', 'true');
-    iconOpen?.classList.add('hidden');
-    iconClose?.classList.remove('hidden');
+  // Las acciones iniciadas por teclado no se animan (se repiten muchas veces y la animación las
+  // siente lentas): abrir o cerrar con Enter, Espacio o Escape es instantáneo. El clic o el toque
+  // sí animan. Se desactiva la transición solo durante ese cambio de estado.
+  function withoutTransition(change: () => void) {
+    mobileMenu?.setAttribute('data-instant', '');
+    change();
+    if (mobileMenu) void getComputedStyle(mobileMenu).display; // fuerza el cálculo de estilos con la transición apagada
+    mobileMenu?.removeAttribute('data-instant');
   }
 
-  function closeMenu() {
-    mobileMenu?.classList.add('hidden');
-    mobileMenu?.setAttribute('aria-hidden', 'true');
-    menuBtn?.setAttribute('aria-expanded', 'false');
-    iconOpen?.classList.remove('hidden');
-    iconClose?.classList.add('hidden');
+  function openMenu(instant = false) {
+    const change = () => {
+      mobileMenu?.classList.remove('hidden');
+      mobileMenu?.setAttribute('aria-hidden', 'false');
+      menuBtn?.setAttribute('aria-expanded', 'true');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+    };
+    instant ? withoutTransition(change) : change();
   }
 
-  menuBtn?.addEventListener('click', () => {
+  function closeMenu(instant = false) {
+    const change = () => {
+      mobileMenu?.classList.add('hidden');
+      mobileMenu?.setAttribute('aria-hidden', 'true');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    };
+    instant ? withoutTransition(change) : change();
+  }
+
+  // En un clic generado por teclado, event.detail vale 0; con ratón o dedo, 1 o más.
+  menuBtn?.addEventListener('click', e => {
+    const instant = (e as MouseEvent).detail === 0;
     const isOpen = mobileMenu?.getAttribute('aria-hidden') === 'false';
-    isOpen ? closeMenu() : openMenu();
+    isOpen ? closeMenu(instant) : openMenu(instant);
   });
 
   // Close menu on nav link click (smooth scroll to section)
   document.querySelectorAll('[data-mobile-nav-link]').forEach(link => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', e => closeMenu((e as MouseEvent).detail === 0));
   });
 
   // Cerrar el menú con Escape (devolviendo el foco al botón) o al tocar fuera del header.
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && mobileMenu?.getAttribute('aria-hidden') === 'false') {
-      closeMenu();
+      closeMenu(true);
       menuBtn?.focus();
     }
   });

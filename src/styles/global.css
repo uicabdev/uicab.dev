@@ -102,6 +102,11 @@ html {
     transition-duration: 120ms;
   }
 
+  /* Cambios iniciados por teclado (Enter, Espacio, Escape): sin transición. Ver el script del Navbar. */
+  #mobile-menu[data-instant] {
+    transition: none;
+  }
+
   @starting-style {
     #mobile-menu:not(.hidden) {
       opacity: 0;
