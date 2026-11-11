@@ -42,7 +42,7 @@ const navLinks = [
       <div class="flex items-center text-xs font-medium uppercase tracking-wide">
         {(['es', 'en'] as const).map((code, i) => (
           <>
-            {i > 0 && <span aria-hidden="true" class="text-surface-muted">|</span>}
+            {i > 0 && <span aria-hidden="true" class="h-3.5 w-px bg-surface-muted"></span>}
             {code === lang ? (
               <span aria-current="true" class="px-2 py-1.5 text-primary-dark">{code}</span>
             ) : (
