@@ -79,7 +79,13 @@ const navLinks = [
     </div>
 
     <!-- Mobile controls (theme toggle + hamburger) -->
-    <div class="flex items-center gap-2 md:hidden">
+    <div class="flex items-center gap-1 md:hidden">
+      <a
+        href={`/${lang}/#contact`}
+        class="inline-flex min-h-11 items-center px-3 text-sm font-medium text-primary transition-colors hover:text-primary-dark"
+      >
+        {t('nav.contact')}
+      </a>
       {THEME_TOGGLE_ENABLED && (<button
         data-theme-toggle
         class="text-text-muted hover:text-primary-dark transition-colors w-11 h-11 flex items-center justify-center"
