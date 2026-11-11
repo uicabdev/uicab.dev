@@ -5,9 +5,9 @@
     "ignoreValues": [
       {
         "rule": "overused-font",
-        "value": "fraunces",
-        "createdAt": "2026-11-05T22:45:00.000Z",
-        "reason": "Fraunces is a pinned decision in DESIGN.md (rediseño), not a generic default; replaces the former Space Grotesk pin"
+        "value": "inter",
+        "createdAt": "2026-11-11T19:10:00.000Z",
+        "reason": "Inter is the body font pinned in DESIGN.md and kept by the author when switching the heading font from Fraunces to Newsreader; replaces the former Fraunces pin"
       }
     ]
   }
