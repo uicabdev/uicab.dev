@@ -115,12 +115,15 @@ blanco.
 - Columna centrada de `max-w-5xl` (1024px) con gutters `px-6`. Lectura de casos y copy
   de Contact: 768px.
 - Patrón de sección: `grid md:grid-cols-[1fr_2fr]` con título sticky (`top-24`) a la
-  izquierda (Proyectos, Experience, About). Approach: 3 columnas en `md`. Hero: 2 columnas
-  con foto cuadrada (224px, 288px en `md`).
+  izquierda (Proyectos, Experience, About). En Experience esa columna lleva además
+  empresa, rol y período, para no repetir un título solo. Approach: 3 columnas en `md`.
+  Hero: 2 columnas con foto cuadrada (224px, 288px en `md`) y altura de su contenido (sin
+  pantalla completa ni scroll-hint), de modo que la primera tarjeta asoma bajo el pliegue.
 - Un solo breakpoint de layout: `md` (768px). Por debajo, todo en una columna y menú
   hamburguesa.
-- **Ritmo deliberadamente desigual** (no una escala uniforme): Hero `py-20`, Proyectos
-  `py-32`, Approach `py-24`, Experience `py-16`, About `py-24`, Contact `pt-28`.
+- **Ritmo deliberadamente desigual** (no una escala uniforme): Hero `pt-24 pb-16`
+  (`pt-16 pb-12` en móvil), Proyectos `pt-20 pb-32`, Approach `py-24`, Experience `py-16`,
+  About `py-24`, Contact `pt-28`.
 - Bandas alternas: `background` → `surface` (Approach) → `background` → `surface`
   (About) → `primary-dark` (Contact + Footer). Entre secciones del mismo fondo, un
   divisor `surface-muted` de 1px.
@@ -139,22 +142,27 @@ blanco.
 ## Componentes
 
 - **Tarjeta de proyecto:** fondo `surface`, sin radio ni sombra; padding 24px (32px en
-  `md`). Título Fraunces, descripción 14px apagada, enlace "Ver caso de estudio →" en
-  `primary` con la flecha que se desplaza 4px al hover. Entrada escalonada 90ms.
+  `md`). Título Fraunces, descripción 14px apagada y, debajo, la primera frase literal de la
+  sección "El problema" del caso (tomada del markdown, con su encabezado, limitada a 3
+  líneas), y el enlace "Ver caso de estudio →" en `primary` con la flecha que se desplaza
+  4px al hover. Entrada escalonada 90ms. No se escribe texto nuevo para la tarjeta.
 - **Etiqueta de estado ("En desarrollo"):** borde 1px `primary`, texto `primary` 12px,
   sin relleno. Es informativa, no clicable.
 - **Navbar:** fija, fondo `surface`, borde inferior `surface-muted`. Enlaces en 14px
   `text-muted`, hover `primary-dark`; la sección visible (vía `IntersectionObserver` y
   `aria-current`) va en `primary-dark` con subrayado. Móvil: menú que se cierra con Escape
-  (devuelve el foco al botón), al tocar fuera o al pulsar un enlace.
+  (devuelve el foco al botón), al tocar fuera o al pulsar un enlace. En móvil, un enlace
+  "Contacto" visible junto al hamburguesa evita tener que abrir el menú.
 - **Indicador de disponibilidad (Hero):** punto `primary` de 8px con halo `animate-ping`
   solo si el usuario permite movimiento.
 - **Banda de cierre (Contact + Footer):** fondo `primary-dark`, titular blanco, texto en
   `surface`, email como elemento más grande (Fraunces 700, subrayado 2px `surface-muted`,
   `break-all`), disponibilidad en una línea separada por " · " y enlaces sociales en
   versión inversa.
-- **Página de caso:** columna de 768px, enlace de regreso, h1, descripción, cuerpo del
-  markdown (h3 Fraunces 1.25rem, párrafos en `primary-dark`) y enlace final a Contact.
+- **Página de caso:** columna de 768px, enlace de regreso, h1, descripción y cuerpo del
+  markdown (secciones en h2 Fraunces 1.25rem, párrafos en `primary-dark`). Al final: tarjeta
+  "Siguiente proyecto" (por orden; el último vuelve al primero), enlace a Contact y
+  enlaces sociales.
 
 ## Movimiento
 
@@ -211,6 +219,8 @@ Decidido por mérito, no por precedencia:
 | Rol de Experience en Fraunces 500 (peso no cargado) | Ni una ni otra: pasó a Inter 500, porque el rol es metadato |
 | Sin estilo de foco propio | Se añadió un foco global (ver Foco) |
 | Etiquetas de accesibilidad con texto fijo en dos idiomas | Se movieron a `ui.ts`, en el idioma de la página |
+| Hero de pantalla completa con scroll-hint | Se quitaron: añadían ~300px vacíos y una acción sin función |
+| Encabezados de caso en h3 (salto desde h1) | Pasaron a h2 en los markdown (cambio de marcado, no de prosa) |
 
 ## Deuda conocida
 
@@ -220,10 +230,14 @@ Decidido por mérito, no por precedencia:
 - Flechas y flechas de descarga (→ ← ↓) usadas como íconos junto a SVG en línea.
 - Marcado duplicado de enlaces de navegación y toggle entre escritorio y móvil.
 - Los botones del Hero repiten clases en línea en lugar de ser un componente.
-- Valores sueltos fuera de escala: `min-h-[calc(100svh-4.5rem)]` (supone un header de 4.5rem),
-  `text-[0.8125rem]`, `z-[100]`.
+- Valores sueltos fuera de escala: `text-[0.8125rem]`, `z-[100]`.
+- Palabras largas sin espacios desbordan en títulos (no ocurre con el contenido actual);
+  el Hero desborda ~80px a 195px de ancho, por debajo del mínimo de 320px de WCAG.
+- Títulos de Approach en inglés dentro de la página en español y "líneas de criterio" por
+  categoría sin redactar: contenido del autor, pendiente.
 - Dos pesos de Fraunces casi iguales (700 y 600) en la primera vista del Hero.
 - Las páginas de caso no marcan sección activa en la navegación.
+- El selector de idioma muestra "EN" en escritorio y "EN — English" en el menú móvil.
 - `BlogLayout` es un envoltorio sin uso hasta la Fase 3.
 
 ---
