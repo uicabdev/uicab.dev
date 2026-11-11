@@ -107,6 +107,8 @@ blanco.
 - **Solo Fraunces pone títulos.** El rol y otros metadatos van en Inter.
 - **Mono significa evidencia o dato** (líneas "Respaldado por", períodos). Nunca decorativo.
 - Solo se cargan los pesos 600/700 de Fraunces: no usar `font-medium` con `font-heading`.
+- Comillas tipográficas (“ ” ’): la cita del Hero las convierte al renderizar; el texto
+  fuente conserva las comillas rectas tal como el autor lo escribió.
 
 ---
 
@@ -152,7 +154,9 @@ blanco.
   `text-muted`, hover `primary-dark`; la sección visible (vía `IntersectionObserver` y
   `aria-current`) va en `primary-dark` con subrayado. Móvil: menú que se cierra con Escape
   (devuelve el foco al botón), al tocar fuera o al pulsar un enlace. En móvil, un enlace
-  "Contacto" visible junto al hamburguesa evita tener que abrir el menú.
+  "Contacto" visible junto al hamburguesa evita tener que abrir el menú. Selector de
+  idioma `ES | EN` en escritorio, con el idioma actual en `primary-dark` y sin enlace; el
+  otro idioma conserva la ruta actual.
 - **Indicador de disponibilidad (Hero):** punto `primary` de 8px con halo `animate-ping`
   solo si el usuario permite movimiento.
 - **Banda de cierre (Contact + Footer):** fondo `primary-dark`, titular blanco, texto en
@@ -161,8 +165,8 @@ blanco.
   versión inversa.
 - **Página de caso:** columna de 768px, enlace de regreso, h1, descripción y cuerpo del
   markdown (secciones en h2 Fraunces 1.25rem, párrafos en `primary-dark`). Al final: tarjeta
-  "Siguiente proyecto" (por orden; el último vuelve al primero), enlace a Contact y
-  enlaces sociales.
+  "Siguiente proyecto" (por orden; el último vuelve al primero) y la misma banda oscura de
+  Contact de la home, para que el cierre conserve su peso.
 
 ## Movimiento
 
@@ -237,7 +241,9 @@ Decidido por mérito, no por precedencia:
   categoría sin redactar: contenido del autor, pendiente.
 - Dos pesos de Fraunces casi iguales (700 y 600) en la primera vista del Hero.
 - Las páginas de caso no marcan sección activa en la navegación.
-- El selector de idioma muestra "EN" en escritorio y "EN — English" en el menú móvil.
+- Evidencia visual del trabajo (diagramas o capturas) en tarjetas y casos: pendiente, depende
+  de qué puede mostrar el autor. Sin métricas inventadas.
+- A 195px de ancho (bajo el mínimo de 320px de WCAG) la página de caso desborda ~44px.
 - `BlogLayout` es un envoltorio sin uso hasta la Fase 3.
 
 ---
