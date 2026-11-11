@@ -75,3 +75,14 @@
     animation: scroll-hint-float 1.8s ease-in-out infinite;
   }
 }
+
+/* Foco por teclado: un solo tratamiento para todo el sitio (DESIGN.md > Foco).
+   primary sobre background/surface da >=5:1; sobre las bandas primary-dark pasa a blanco. */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+[data-surface='dark'] :focus-visible {
+  outline-color: var(--color-white);
+}
