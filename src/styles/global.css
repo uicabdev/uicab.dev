@@ -96,7 +96,10 @@ html {
 @media (prefers-reduced-motion: no-preference) {
   #mobile-menu {
     transition: opacity 180ms cubic-bezier(0.23, 1, 0.32, 1),
-      transform 180ms cubic-bezier(0.23, 1, 0.32, 1), display 180ms allow-discrete;
+      transform 180ms cubic-bezier(0.23, 1, 0.32, 1), display 180ms;
+    /* Aparte del shorthand: un navegador que no entienda allow-discrete descartaría toda la
+       declaración transition si fuera dentro de ella (guía animate-element-entry-exit). */
+    transition-behavior: allow-discrete;
   }
 
   #mobile-menu.hidden {
