@@ -136,3 +136,17 @@ li {
     animation-iteration-count: 3;
   }
 }
+
+/* Líneas de texto: títulos equilibrados y párrafos sin palabras sueltas al final. Es una mejora
+   progresiva (si el navegador no lo soporta, el texto se ajusta como siempre). balance es costoso,
+   así que solo en títulos cortos; pretty es de coste medio y solo en bloques de texto. */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
