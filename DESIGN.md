@@ -87,7 +87,7 @@ un ancla (el siguiente Tab continúa desde ahí); al no ser controles, no dibuja
 
 | Rol | Fuente | Peso | Respaldo |
 |---|---|---|---|
-| Títulos, cita del Hero, wordmark, email de Contact | **Fraunces** | 600–700 | Georgia, serif |
+| Títulos, cita del Hero, wordmark, email de Contact | **Newsreader** | 600–700 | Georgia, serif |
 | Cuerpo y UI | **Inter** | 400 texto, 500 énfasis | system-ui |
 | Evidencia y fechas | **JetBrains Mono** | 400 | ui-monospace, Consolas |
 
@@ -107,9 +107,12 @@ un ancla (el siguiente Tab continúa desde ahí); al no ser controles, no dibuja
 | Mono (evidencia, períodos) | 0.8125rem / 0.875rem | 400 |
 
 ### Reglas
-- **Solo Fraunces pone títulos.** El rol y otros metadatos van en Inter.
+- **Solo Newsreader pone títulos.** El rol y otros metadatos van en Inter.
 - **Mono significa evidencia o dato** (líneas "Respaldado por", períodos). Nunca decorativo.
-- Solo se cargan los pesos 600/700 de Fraunces: no usar `font-medium` con `font-heading`.
+- Solo se cargan los pesos 600/700 de Newsreader: no usar `font-medium` con `font-heading`.
+- Newsreader se carga **estática** (`Newsreader:wght@600;700`, ~57 KB), no variable: con tamaño
+  óptico variable (129 KB) se veía igual en las pruebas (mismas líneas, anchuras dentro del 3%).
+  Peso total de fuentes: 125 KB, 21 KB más que con Fraunces.
 - Comillas tipográficas (“ ” ’): la cita del Hero las convierte al renderizar; el texto
   fuente conserva las comillas rectas tal como el autor lo escribió.
 - Líneas de texto: `text-wrap: balance` en `h1`–`h3` (costoso, solo en títulos cortos) y
@@ -153,7 +156,7 @@ un ancla (el siguiente Tab continúa desde ahí); al no ser controles, no dibuja
 ## Componentes
 
 - **Tarjeta de proyecto:** fondo `surface`, sin radio ni sombra; padding 24px (32px en
-  `md`). Título Fraunces, descripción 14px apagada y, debajo, la primera frase literal de la
+  `md`). Título Newsreader, descripción 14px apagada y, debajo, la primera frase literal de la
   sección "El problema" del caso (tomada del markdown, con su encabezado, limitada a 3
   líneas), y el enlace "Ver caso de estudio →" en `primary` con la flecha que se desplaza
   4px al hover. Entrada escalonada 60ms. No se escribe texto nuevo para la tarjeta.
@@ -172,11 +175,11 @@ un ancla (el siguiente Tab continúa desde ahí); al no ser controles, no dibuja
 - **Foto del Hero:** `fetchpriority="high"` (es el LCP en escritorio; pasa de prioridad Media a
   Alta). Nunca `loading="lazy"` en ella.
 - **Banda de cierre (Contact + Footer):** fondo `primary-dark`, titular blanco, texto en
-  `surface`, email como elemento más grande (Fraunces 700, subrayado 2px `surface-muted`,
+  `surface`, email como elemento más grande (Newsreader 700, subrayado 2px `surface-muted`,
   `break-all`), disponibilidad en una línea separada por " · " y enlaces sociales en
   versión inversa.
 - **Página de caso:** columna de 768px, enlace de regreso, h1, descripción y cuerpo del
-  markdown (secciones en h2 Fraunces 1.25rem, párrafos en `primary-dark`). Al final: tarjeta
+  markdown (secciones en h2 Newsreader 1.25rem, párrafos en `primary-dark`). Al final: tarjeta
   "Siguiente proyecto" (por orden; el último vuelve al primero) y la misma banda oscura de
   Contact de la home, para que el cierre conserve su peso. Los párrafos del cuerpo rompen
   URLs largas (`overflow-wrap: anywhere`) para no desbordar en móvil.
@@ -251,6 +254,7 @@ Decidido por mérito, no por precedencia:
 | Botón secundario con borde `surface-muted` (1.44:1) | Se corrigió el código a la especificación: borde `primary` |
 | Tarjetas en blanco (especificación) vs. `surface` (código) | Gana el código: el blanco sobre el fondo da 1.05:1; la especificación se actualizó |
 | Rol de Experience en Fraunces 500 (peso no cargado) | Ni una ni otra: pasó a Inter 500, porque el rol es metadato |
+| Fuente de títulos: Fraunces (`contexto/rediseno-uicabdev-definicion.md`) | **Cambiada a Newsreader por decisión del autor**: a 48px en negrita Fraunces se veía blanda y llamativa, y chocaba con la voz del sitio (clara, directa, sobria) y con la aspiración de arquitecto o consultor. Se probaron 10 combinaciones sobre el propio sitio. El documento original sigue diciendo Fraunces; este archivo manda |
 | Sin estilo de foco propio | Se añadió un foco global (ver Foco) |
 | Etiquetas de accesibilidad con texto fijo en dos idiomas | Se movieron a `ui.ts`, en el idioma de la página |
 | Hero de pantalla completa con scroll-hint | Se quitaron: añadían ~300px vacíos y una acción sin función |
@@ -267,7 +271,7 @@ Decidido por mérito, no por precedencia:
 - Valores sueltos fuera de escala: `text-[0.8125rem]`, `z-[100]`.
 - Títulos de Approach en inglés dentro de la página en español y "líneas de criterio" por
   categoría sin redactar: contenido del autor, pendiente.
-- Dos pesos de Fraunces casi iguales (700 y 600) en la primera vista del Hero.
+- Dos pesos de Newsreader casi iguales (700 y 600) en la primera vista del Hero.
 - Navegación con etiquetas de ~16–19 caracteres (p. ej. una traducción al alemán) desborda a
   768px; solo importaría si se añade un idioma.
 - Sin verificar en un dispositivo físico: destello al tocar, color de la barra del navegador
