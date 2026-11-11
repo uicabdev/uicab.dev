@@ -12,12 +12,15 @@ const t = useTranslations(lang);
 const altLang = lang === 'es' ? 'en' : 'es';
 const altHref = Astro.url.pathname.replace(`/${lang}/`, `/${altLang}/`);
 
+// En las páginas de caso (/{lang}/work/…) "Trabajo" es la sección actual.
+const onCase = Astro.url.pathname.startsWith(`/${lang}/work/`);
+
 const navLinks = [
-  { href: `/${lang}/#projects`, label: t('nav.work') },
-  { href: `/${lang}/#approach`, label: t('nav.approach') },
-  { href: `/${lang}/#experience`, label: t('nav.experience') },
-  { href: `/${lang}/#about`, label: t('nav.about') },
-  { href: `/${lang}/#contact`, label: t('nav.contact') },
+  { href: `/${lang}/#projects`, label: t('nav.work'), current: onCase },
+  { href: `/${lang}/#approach`, label: t('nav.approach'), current: false },
+  { href: `/${lang}/#experience`, label: t('nav.experience'), current: false },
+  { href: `/${lang}/#about`, label: t('nav.about'), current: false },
+  { href: `/${lang}/#contact`, label: t('nav.contact'), current: false },
 ];
 ---
 
@@ -35,6 +38,7 @@ const navLinks = [
           href={link.href}
           class="py-1 text-text-muted hover:text-primary-dark aria-[current=true]:text-primary-dark aria-[current=true]:underline aria-[current=true]:underline-offset-8 transition-colors text-sm"
           data-nav-link
+          aria-current={link.current ? 'true' : undefined}
         >
           {link.label}
         </a>
@@ -149,6 +153,7 @@ const navLinks = [
           href={link.href}
           class="inline-flex min-h-11 items-center text-text-muted hover:text-primary-dark aria-[current=true]:text-primary-dark aria-[current=true]:underline aria-[current=true]:underline-offset-8 transition-colors text-sm"
           data-nav-link
+          aria-current={link.current ? 'true' : undefined}
           data-mobile-nav-link
         >
           {link.label}
@@ -234,7 +239,8 @@ const navLinks = [
   // Sección activa: marca con aria-current el enlace de la sección visible (solo en la home).
   const navLinkEls = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
   const sections = document.querySelectorAll<HTMLElement>('main > section[id]');
-  if (navLinkEls.length && sections.length && 'IntersectionObserver' in window) {
+  // Solo en la home (donde existe #hero): en las páginas de caso "Trabajo" queda marcado de forma fija.
+  if (document.getElementById('hero') && navLinkEls.length && sections.length && 'IntersectionObserver' in window) {
     const hashOf = (a: HTMLAnchorElement) => new URL(a.href).hash.slice(1);
     const setCurrent = (id: string) => {
       navLinkEls.forEach(a => {
