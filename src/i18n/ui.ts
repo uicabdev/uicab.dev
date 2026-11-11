@@ -32,6 +32,7 @@ export const ui = {
     'projects.status.inprogress': 'En desarrollo',
     'projects.readmore': 'Ver caso de estudio',
     'projects.back': 'Volver a proyectos',
+    'projects.next': 'Siguiente proyecto',
   },
   en: {
     'nav.work': 'Work',
@@ -59,5 +60,6 @@ export const ui = {
     'projects.status.inprogress': 'In progress',
     'projects.readmore': 'Read case study',
     'projects.back': 'Back to projects',
+    'projects.next': 'Next project',
   },
 } as const;

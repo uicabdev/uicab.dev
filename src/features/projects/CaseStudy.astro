@@ -1,5 +1,6 @@
 ---
-import { render, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import SocialLinks from '../../components/common/SocialLinks.astro';
 import { useTranslations } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -11,6 +12,12 @@ interface Props {
 const { project, lang } = Astro.props;
 const t = useTranslations(lang);
 const { Content } = await render(project);
+
+// Siguiente proyecto por orden; el último vuelve al primero.
+const all = (await getCollection(lang === 'es' ? 'projects-es' : 'projects-en')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const next = all[(all.findIndex(p => p.data.slug === project.data.slug) + 1) % all.length];
 ---
 
 <article class="mx-auto max-w-3xl px-6 py-16 md:py-24">
@@ -44,12 +51,25 @@ const { Content } = await render(project);
     <Content />
   </div>
 
-  <footer class="mt-16 border-t border-surface-muted pt-10">
+  <footer class="mt-16 flex flex-col gap-8 border-t border-surface-muted pt-10">
+    {next && next.data.slug !== project.data.slug && (
+      <a
+        href={`/${lang}/work/${next.data.slug}/`}
+        class="group block border border-surface-muted bg-surface p-6 transition-colors hover:border-primary"
+      >
+        <span class="text-sm text-text-muted">{t('projects.next')}:</span>
+        <span class="mt-1 flex items-center justify-between gap-4 font-heading text-xl font-bold text-primary-dark">
+          {next.data.title}
+          <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+        </span>
+      </a>
+    )}
     <a
       href={`/${lang}/#contact`}
       class="block min-h-11 py-1 font-heading text-2xl font-bold text-primary-dark transition-colors hover:text-primary"
     >
       {t('contact.title')} <span aria-hidden="true" class="ml-2">→</span>
     </a>
+    <SocialLinks lang={lang} />
   </footer>
 </article>
