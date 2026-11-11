@@ -17,8 +17,8 @@ const quote = {
 };
 ---
 
-<section id="hero" class="flex min-h-[calc(100svh-4.5rem)] items-center">
-  <div class="mx-auto w-full max-w-5xl px-6 py-20">
+<section id="hero">
+  <div class="mx-auto w-full max-w-5xl px-6 pb-12 pt-16 md:pb-16 md:pt-24">
     <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
 
       <!-- Texto -->
@@ -98,30 +98,6 @@ const quote = {
         </div>
       </div>
 
-    </div>
-
-    <!-- Scroll hint -->
-    <div class="mt-20 flex justify-center">
-      <a
-        href={`/${lang}/#projects`}
-        aria-label={t('hero.scroll')}
-        class="scroll-hint inline-flex min-h-11 min-w-11 items-center justify-center text-text-muted transition-colors hover:text-primary"
-      >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <polyline points="19 12 12 19 5 12" />
-        </svg>
-      </a>
     </div>
   </div>
 </section>

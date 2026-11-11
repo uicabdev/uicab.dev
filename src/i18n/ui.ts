@@ -29,7 +29,6 @@ export const ui = {
     'contact.availability.consulting': 'Consultoría técnica',
     'stack.note':
       'Como parte de mi trabajo he revisado, propuesto mejoras y corregido código en tecnologías fuera de mi stack principal — Angular, Vue y otros. No las domino, pero tampoco me detengo cuando las encuentro.',
-    'hero.scroll': 'Ir abajo',
     'projects.status.inprogress': 'En desarrollo',
     'projects.readmore': 'Ver caso de estudio',
     'projects.back': 'Volver a proyectos',
@@ -57,7 +56,6 @@ export const ui = {
     'contact.availability.consulting': 'Technical consulting',
     'stack.note':
       "As part of my work I've reviewed, proposed improvements, and fixed code in technologies outside my main stack — Angular, Vue, and others. I don't master them, but I don't stop when I find them either.",
-    'hero.scroll': 'Scroll down',
     'projects.status.inprogress': 'In progress',
     'projects.readmore': 'Read case study',
     'projects.back': 'Back to projects',

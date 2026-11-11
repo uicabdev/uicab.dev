@@ -161,8 +161,7 @@ blanco.
 - **Reveal on scroll:** `data-reveal="up"` (opacidad 0 y 16px) o `"fade"`, 0.6s con
   `cubic-bezier(0.16, 1, 0.3, 1)`, escalonado con `--reveal-delay`; se dispara al 15% de
   visibilidad. Requiere `html.js`.
-- Fundido global de 0.25s en color, fondo y borde; scroll suave a anclas; flotación del
-  scroll-hint (1.8s).
+- Fundido global de 0.25s en color, fondo y borde; scroll suave a anclas.
 - Todo condicionado a `prefers-reduced-motion: no-preference`. Sin JS el contenido es
   visible desde el inicio. Sin levantamientos ni sombras en hover.
 

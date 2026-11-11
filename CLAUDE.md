@@ -57,7 +57,7 @@ Orden de la home (y del header, salvo Hero): Hero → Proyectos → Approach →
 
 | Sección | Feature | Componentes |
 |---|---|---|
-| Hero | `features/hero/` | `Hero.astro`, badge disponibilidad, 2 CTAs, scroll hint |
+| Hero | `features/hero/` | `Hero.astro`, badge disponibilidad, 2 CTAs |
 | Proyectos | `features/projects/` | `Projects.astro`, `ProjectCard.astro` (enlaza al caso), `CaseStudy.astro` (página `work/[slug]`) |
 | Approach | `features/approach/` | `Approach.astro` (3 categorías + nota de adaptación; reemplazó a Stack) |
 | Experiencia | `features/experience/` | `Experience.astro` |
